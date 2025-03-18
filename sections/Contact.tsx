@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { toast } from "react-toastify"; // Import toast for notifications
+import { toast } from "react-toastify";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -37,6 +38,8 @@ const Contact = () => {
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
       const res = await emailjs.send(serviceID, templateID, formData, userID);
       if (res.status === 200) {
@@ -47,6 +50,8 @@ const Contact = () => {
     } catch (error) {
       console.error("EmailJS Error:", error);
       toast.error("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -177,9 +182,14 @@ const Contact = () => {
                 />
                 <button
                   type="submit"
-                  className="w-full bg-[#575e7d] text-white py-2 rounded-md font-semibold hover:bg-[#454b64] transition"
+                  className={`w-full text-white py-2 rounded-md font-semibold ${
+                    isSubmitting
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-[#575e7d] hover:bg-[#454b64] transition"
+                  }`}
+                  disabled={isSubmitting}
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </motion.div>

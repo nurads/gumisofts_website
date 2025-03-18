@@ -109,10 +109,10 @@ const Footer = () => {
             <li className="flex items-center space-x-2">
               <MdEmail className="text-[#023047] text-lg" />
               <Link
-                href="mailto:contact@gumiapps.com"
+                href="mailto:contact@gumisofts.com"
                 className="text-[#416374]"
               >
-                contact@gumiapps.com
+                contact@gumisofts.com
               </Link>
             </li>
             <li className="flex items-center space-x-2">

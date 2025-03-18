@@ -21,14 +21,14 @@ const NavItems = ({ closeMenu }: { closeMenu?: () => void }) => {
         section.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      router.push(href); // Navigate to other pages
+      router.push(href);
     }
 
-    if (closeMenu) closeMenu(); // Close mobile menu if needed
+    if (closeMenu) closeMenu();
   };
 
   return (
-    <ul className="flex flex-col sm:flex-row items-center gap-6 md:gap-8">
+    <ul className="flex flex-col sm:flex-row items-center gap-6 md:gap-12 lg:gap-16">
       {navLinks.map(({ id, name, href }) => (
         <li
           key={id}
@@ -81,14 +81,14 @@ const Navbar = () => {
           : "absolute top-0 left-0 right-0"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-10 py-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-5 sm:px-10 py-4 flex items-center justify-between md:justify-start">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold text-gray-900">
           GUMISOFTS
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden sm:flex">
+        <nav className="hidden sm:flex ml-auto">
           <NavItems />
         </nav>
 
