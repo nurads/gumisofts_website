@@ -11,7 +11,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="mb-24 mt-20 md:mt-14 px-6 flex items-center">
+    <section id="hero" className="mb-24 mt-24 md:mt-14 px-6 flex items-center">
       <div className="max-w-[1140px] mx-auto grid md:grid-cols-2 items-center gap-8 md:gap-16">
         {/* Left Section (Text) */}
         <div className="text-center md:text-left">
