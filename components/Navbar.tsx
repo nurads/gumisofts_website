@@ -75,13 +75,11 @@ const Navbar = () => {
 
   return (
     <header
-      className={`w-full transition-all duration-300 ${
-        isScrolled
-          ? "fixed top-0 left-0 right-0 bg-white shadow-md z-50"
-          : "absolute top-0 left-0 right-0"
+      className={`w-full fixed top-0 left-0 right-0 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-md z-50" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-10 py-4 flex items-center justify-between md:justify-start">
+      <div className="w-full px-5 sm:px-10 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold text-gray-900">
           GUMISOFTS
@@ -102,7 +100,9 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isOpen && <div className="fixed inset-0 bg-opacity-50 z-40"></div>}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+      )}
 
       {/* Mobile Menu with Animation */}
       <motion.div

@@ -9,10 +9,13 @@ export default function Hero() {
       target.scrollIntoView({ behavior: "smooth" });
     }
   };
-
+  // min-h-screen
   return (
-    <section id="hero" className="mb-24 mt-24 md:mt-14 px-6 flex items-center">
-      <div className="max-w-[1140px] mx-auto grid md:grid-cols-2 items-center gap-8 md:gap-16">
+    <section
+      id="hero"
+      className="w-full  flex items-center justify-center px-6 pt-24 md:pt-14"
+    >
+      <div className="max-w-[1140px] mx-auto grid md:grid-cols-2 items-center gap-8 md:gap-6">
         {/* Left Section (Text) */}
         <div className="text-center md:text-left">
           <h1 className="text-4xl md:text-[52px] font-bold leading-tight md:leading-[1.05] text-[#020202] tracking-tight mb-6">
