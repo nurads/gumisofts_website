@@ -1,15 +1,5 @@
-"use client";
-import Hero from "@/sections/Hero";
-
-import Service from "@/sections/Service";
-import Testimonial from "@/sections/Testimonial";
-import Work from "@/sections/Work";
-import Contact from "@/sections/Contact";
-
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import { use, useEffect, useState } from "react";
+// pages/index.tsx
+import { useEffect, useState } from "react";
 
 const targetDate = new Date("2025-07-01T00:00:00"); // Change to your launch date
 
@@ -44,27 +34,15 @@ export default function Home() {
         <h1 className="text-4xl md:text-5xl font-bold mb-6">🚧 Coming Soon</h1>
         <p className="text-lg md:text-xl mb-4">We’re working hard to launch our new site.</p>
         <p className="text-2xl font-semibold mb-6">{timeLeft}</p>
-        {/* <div className="max-w-md mx-auto">
+        <div className="max-w-md mx-auto">
           <input
             type="email"
             placeholder="Enter your email to get updates"
             className="w-full p-3 rounded-lg text-black mb-3"
           />
           <button className="w-full p-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition">Notify Me</button>
-        </div> */}
+        </div>
       </div>
     </main>
   );
 }
-// export default function Home() {
-//   return (
-//     <div className="">
-//       <Hero />
-//       <Service />
-//       <Testimonial />
-//       <Work />
-//       <Contact />
-//       <ToastContainer position="top-right" autoClose={3000} />
-//     </div>
-//   );
-// }

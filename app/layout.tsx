@@ -36,13 +36,13 @@ export default function RootLayout({
         {/* Navbar appears on every page */}
         <div className="flex flex-col min-h-screen">
           {/* Navbar always at the top */}
-          <Navbar />
+          {/* <Navbar /> */}
 
           {/* Main content area fills the available space */}
           <main className="flex-1">{children}</main>
 
           {/* Footer always at the bottom */}
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </body>
     </html>
