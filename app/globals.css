@@ -1,8 +1,10 @@
 @import "tailwindcss";
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -10,9 +12,12 @@
 
 .animate-scroll {
   display: flex;
-  gap: 3rem; /* Adjust spacing */
-  min-width: 200%; /* Ensures smooth looping */
-  animation: scroll 20s linear infinite; /* Adjust speed */
+  gap: 3rem;
+  /* Adjust spacing */
+  min-width: 200%;
+  /* Ensures smooth looping */
+  animation: scroll 20s linear infinite;
+  /* Adjust speed */
 }
 
 /* 

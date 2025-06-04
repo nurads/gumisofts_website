@@ -4,24 +4,33 @@ export const navLinks = [
     name: "Home",
     href: "/",
   },
-
   {
     id: 2,
     name: "Services",
-    href: "#services",
+    href: "/services",
   },
   {
     id: 3,
-    name: "Work",
-    href: "#work",
+    name: "Products",
+    href: "/products",
   },
   {
     id: 4,
+    name: "Work",
+    href: "/#work",
+  },
+  {
+    id: 5,
     name: "About",
     href: "/about",
   },
   {
-    id: 5,
+    id: 6,
+    name: "Blog",
+    href: "/blog",
+  },
+  {
+    id: 7,
     name: "Careers",
     href: "/careers",
   },
@@ -131,7 +140,7 @@ export const workProjects = [
     image: "assets/work/adero.svg",
     title: "AderoTech – Digital Solutions",
     description:
-      "We developed AderoTech’s website to provide a seamless, modern platform that supports their mission of simplifying lives through digital solutions.",
+      "We developed AderoTech's website to provide a seamless, modern platform that supports their mission of simplifying lives through digital solutions.",
     checkoutLink: "https://www.adero.tech/",
   },
   {
