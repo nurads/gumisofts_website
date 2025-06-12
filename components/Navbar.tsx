@@ -78,7 +78,7 @@ const Navbar = () => {
       transition={{ duration: 0.6 }}
       className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
         ? "bg-gray-900/95 backdrop-blur-lg shadow-2xl border-b border-white/10"
-        : "bg-transparent"
+        : "bg-transparent backdrop-blur-lg"
         }`}
     >
       <div className="container mx-auto px-6 py-4">
@@ -93,9 +93,9 @@ const Navbar = () => {
               {/* <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center font-bold text-white text-xl group-hover:scale-110 transition-transform duration-300">
                 G
               </div> */}
-              <Image src="/assets/logo.png" alt="Gumisofts" width={64} height={64} />
+              <Image src="/assets/logo-gradient.png" alt="Gumisofts" width={64} height={64} />
               <span className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
-                GUMISOFTS
+                Gumisofts
               </span>
             </Link>
           </motion.div>
@@ -155,7 +155,7 @@ const Navbar = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+          className="fixed inset-0 bg-black/60 backdrop-blur-lg z-40"
           onClick={() => setIsOpen(false)}
         />
       )}
@@ -171,11 +171,10 @@ const Navbar = () => {
         {/* Mobile Menu Header */}
         <div className="flex items-center justify-between p-6 border-b border-white/10">
           <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center font-bold text-white text-lg">
-              G
-            </div>
+            
+            <Image src="/assets/logo-white.png" alt="Gumisofts" width={64} height={64} />
             <span className="text-xl font-bold text-white">
-              GUMISOFTS
+              Gumisofts
             </span>
           </Link>
           <button
@@ -187,7 +186,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Items */}
-        <div className="flex-1 px-6 py-8">
+        <div className="flex-1 px-6 py-8 backdrop-blur-3xl bg-black/80">
           <NavItems closeMenu={() => setIsOpen(false)} />
         </div>
 
