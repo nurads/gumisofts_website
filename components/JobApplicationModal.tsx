@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from 'react';
-import { Job, JobApplication } from '@/types/api';
+import { Job, JobApplication, JobApplicationRequest } from '@/types/api';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiUpload, FiUser, FiMail, FiLinkedin, FiFileText, FiArrowRight } from 'react-icons/fi';
 import { apiService } from '@/services/api';
 import { toast } from 'react-toastify';
+import { useMutation } from '@tanstack/react-query';
+import { applyJob } from '@/services/careers';
 
 interface JobApplicationModalProps {
     job: Job | null;
@@ -20,7 +22,19 @@ const JobApplicationModal: React.FC<JobApplicationModalProps> = ({ job, isOpen, 
         coverLetter: ''
     });
     const [resume, setResume] = useState<File | null>(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const { mutate: applyJobMutation, isPending } = useMutation({
+        mutationFn: (data: JobApplicationRequest) => applyJob(job?.id || '', data),
+        onSuccess: () => {
+            toast.success('Application submitted successfully!');
+            setFormData({ name: '', email: '', linkedIn: '', coverLetter: '' });
+            setResume(null);
+            onClose();
+        },
+        onError: () => {
+            toast.error('Failed to submit application. Please try again.');
+        }
+    });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData(prev => ({
@@ -75,32 +89,22 @@ const JobApplicationModal: React.FC<JobApplicationModalProps> = ({ job, isOpen, 
             return;
         }
 
-        setIsSubmitting(true);
 
-        try {
-            const application: Omit<JobApplication, 'id' | 'appliedAt' | 'status'> = {
-                jobId: job.id,
-                name: formData.name.trim(),
-                email: formData.email.trim(),
-                linkedIn: formData.linkedIn.trim(),
-                resume: resume,
-                coverLetter: formData.coverLetter.trim() || undefined
-            };
 
-            const response = await apiService.applyForJob(application);
+        const applicationRequest: JobApplicationRequest = {
+            full_name: formData.name.trim(),
+            email: formData.email.trim(),
+            linkedIn: formData.linkedIn.trim(),
+            resume: resume,
+            cover_letter: formData.coverLetter.trim() || undefined
+        };
 
-            if (response.success) {
-                toast.success(response.message || 'Application submitted successfully!');
-                setFormData({ name: '', email: '', linkedIn: '', coverLetter: '' });
-                setResume(null);
-                onClose();
-            }
-        } catch (error) {
-            toast.error('Failed to submit application. Please try again.');
-            console.error('Application submission error:', error);
-        } finally {
-            setIsSubmitting(false);
-        }
+        console.log(applicationRequest);
+
+        applyJobMutation(applicationRequest);
+
+
+
     };
 
     if (!job) return null;
@@ -250,11 +254,11 @@ const JobApplicationModal: React.FC<JobApplicationModalProps> = ({ job, isOpen, 
                                 </button>
                                 <button
                                     type="submit"
-                                    disabled={isSubmitting}
+                                    disabled={isPending}
                                     className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-semibold shadow-lg flex items-center justify-center gap-2"
                                 >
-                                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
-                                    {!isSubmitting && <FiArrowRight className="w-4 h-4" />}
+                                    {isPending ? 'Submitting...' : 'Submit Application'}
+                                    {!isPending && <FiArrowRight className="w-4 h-4" />}
                                 </button>
                             </div>
                         </form>

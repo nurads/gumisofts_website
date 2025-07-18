@@ -3,12 +3,24 @@ import { motion } from "framer-motion";
 import { FiMail, FiPhone, FiMapPin, FiSend, FiArrowRight } from "react-icons/fi";
 import { useState } from "react";
 import Link from "next/link";
+import { createMessage } from "@/services/general";
+import { toast } from "react-toastify";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import Loader from "@/components/Loader";
+import { getCompanyInfo } from "@/services/company";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+  });
+
+  const { mutate: createMessageMutation, isPending: isCreatingMessage } = useMutation({
+    mutationFn: createMessage,
+    onSuccess: () => {
+      toast.success("Message sent successfully");
+    },
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -21,29 +33,46 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
-    console.log("Form submitted:", formData);
+    createMessageMutation({
+      full_name: formData.name,
+      email: formData.email,
+      content: formData.message,
+    });
+
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
+
   };
+  const { data: companyInfo, isLoading: isCompanyInfoLoading, isError: isCompanyInfoError } = useQuery({
+    queryKey: ["companyInfo"],
+    queryFn: getCompanyInfo,
+  });
 
   const contactInfo = [
     {
       icon: FiMail,
       title: "Email Us",
-      detail: "contact@gumisofts.com",
+      detail: companyInfo?.email || "",
       description: "Send us a message anytime",
     },
     {
       icon: FiPhone,
       title: "Call Us",
-      detail: "+251 953 5416 161",
+      detail: companyInfo?.phone || "",
       description: "Mon-Fri from 8am to 5pm",
     },
     {
       icon: FiMapPin,
       title: "Visit Us",
-      detail: "Mebrat Hayle,Adama, Ethiopia",
+      detail: companyInfo?.address || "",
       description: "Come say hello at our office",
     },
   ];
+
+
 
   return (
     <section
@@ -148,15 +177,17 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <motion.button
+              {isCreatingMessage && <Loader variant="bars" />}
+
+              {!isCreatingMessage && <motion.button
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-xl flex items-center justify-center gap-2"
               >
-                Send Message
+                {"Send Message"}
                 <FiSend className="w-5 h-5" />
-              </motion.button>
+              </motion.button>}
             </form>
           </motion.div>
 
@@ -207,7 +238,7 @@ const Contact = () => {
                 Book a free consultation call with our team to discuss your vision and how we can bring it to life.
               </p>
               <button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2">
-                <Link href="https://calendly.com/nuradhussen082" target="_blank">
+                <Link href={companyInfo?.scheduleUrl || ""} target="_blank">
                   Schedule a Call
                 </Link>
                 <FiArrowRight className="w-4 h-4" />
@@ -258,10 +289,10 @@ const Contact = () => {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                "100+ Projects",
-                "50+ Clients",
-                "5+ Years",
-                "24/7 Support"
+                `${companyInfo?.numberOfProjectsCompleted}+ Projects`,
+                `${companyInfo?.numberOfHappyClients}+ Clients`,
+                `${companyInfo?.yearsOfExprience}+ Years`,
+                `${companyInfo?.clientSatisficationRate}% Success Rate`
               ].map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-2xl font-bold text-white">{stat}</div>

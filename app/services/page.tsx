@@ -6,11 +6,18 @@ import { apiService } from '@/services/api';
 import { FiArrowRight, FiCheck, FiCode, FiEdit, FiCloud, FiSmartphone, FiDatabase, FiShield, FiStar } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { getCompanyInfo } from '@/services/company';
+import { useQuery } from '@tanstack/react-query';
 
 const ServicesPage = () => {
     const [services, setServices] = useState<Service[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('all');
+
+    const { data: companyInfo, isLoading: isCompanyInfoLoading, isError: isCompanyInfoError } = useQuery({
+        queryKey: ["companyInfo"],
+        queryFn: getCompanyInfo,
+    });
 
     useEffect(() => {
         const fetchServices = async () => {
@@ -110,10 +117,10 @@ const ServicesPage = () => {
                             className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12"
                         >
                             {[
-                                { number: "50+", label: "Services Offered" },
-                                { number: "100+", label: "Projects Completed" },
-                                { number: "25+", label: "Happy Clients" },
-                                { number: "99%", label: "Success Rate" }
+                                { number: `${companyInfo?.numberOfServices}+`, label: "Services Offered" },
+                                { number: `${companyInfo?.numberOfProjectsCompleted}+`, label: "Projects Completed" },
+                                { number: `${companyInfo?.numberOfHappyClients}+`, label: "Happy Clients" },
+                                { number: `${companyInfo?.clientSatisficationRate}%`, label: "Success Rate" }
                             ].map((stat, index) => (
                                 <div key={index} className="text-center">
                                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.number}</div>
@@ -212,23 +219,16 @@ const ServicesPage = () => {
                                                 )}
                                             </div>
 
-                                            {service.pricing && (
-                                                <div className="mb-6 p-4 bg-white/5 rounded-2xl border border-white/10">
-                                                    <div className="text-sm text-gray-400 mb-2">Starting from</div>
-                                                    <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                                                        {formatPrice(service.pricing.basic)}
-                                                    </div>
-                                                </div>
-                                            )}
+
 
                                             <div className="flex gap-3">
-                                                <button className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
-                                                    Get Started
-                                                    <FiArrowRight className="w-4 h-4" />
-                                                </button>
-                                                <button className="px-4 py-3 border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 rounded-lg font-semibold transition-all duration-300">
+                                                <a href={`/services/${service.id}`} className="cursor-pointer flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
                                                     Learn More
-                                                </button>
+                                                    <FiArrowRight className="w-4 h-4" />
+                                                </a>
+                                                {/* <button className="cursor-pointer px-4 py-3 border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 rounded-lg font-semibold transition-all duration-300">
+                                                    Learn More
+                                                </button> */}
                                             </div>
 
                                             {/* Hover Effect */}

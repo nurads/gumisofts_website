@@ -1,34 +1,43 @@
 "use client";
 import { motion } from "framer-motion";
 import { FiStar, FiUser } from "react-icons/fi";
+import { useQuery } from "@tanstack/react-query";
+import { getCompanyInfo, getTestimonials } from "@/services/company";
 
 const Testimonial = () => {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      position: "CEO, TechStart Inc.",
-      rating: 5,
-      comment: "Gumisofts transformed our vision into reality. Their expertise in modern web development and attention to detail exceeded our expectations. The team was professional, responsive, and delivered on time.",
-      avatar: "/assets/avatar1.jpg"
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      position: "CTO, InnovateLab",
-      rating: 5,
-      comment: "Outstanding work on our mobile application. The development process was smooth, and the final product was exactly what we envisioned. Highly recommended for any software development needs.",
-      avatar: "/assets/avatar2.jpg"
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      position: "Founder, DigitalFlow",
-      rating: 5,
-      comment: "Working with Gumisofts was a game-changer for our business. They not only built an amazing platform but also provided valuable insights that improved our overall business strategy.",
-      avatar: "/assets/avatar3.jpg"
-    }
-  ];
+  // const testimonials = [
+
+  //   {
+  //     id: 2,
+  //     name: "Michael Chen",
+  //     position: "CTO, InnovateLab",
+  //     rating: 5,
+  //     comment: "Outstanding work on our mobile application. The development process was smooth, and the final product was exactly what we envisioned. Highly recommended for any software development needs.",
+  //     avatar: "/assets/avatar2.jpg"
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Emily Rodriguez",
+  //     position: "Founder, DigitalFlow",
+  //     rating: 5,
+  //     comment: "Working with Gumisofts was a game-changer for our business. They not only built an amazing platform but also provided valuable insights that improved our overall business strategy.",
+  //     avatar: "/assets/avatar3.jpg"
+  //   }
+  // ];
+
+  const { data: companyInfo, isLoading: isCompanyInfoLoading } = useQuery({
+    queryKey: ["companyInfo"],
+    queryFn: getCompanyInfo,
+    staleTime: 1000 * 60 * 60 * 24,
+    refetchOnWindowFocus: false
+  });
+
+  const { data: testimonials, isLoading: isTestimonialsLoading } = useQuery({
+    queryKey: ["testimonials"],
+    queryFn: getTestimonials,
+    staleTime: 1000 * 60 * 60 * 24,
+    refetchOnWindowFocus: false
+  });
 
   return (
     <section
@@ -75,46 +84,51 @@ const Testimonial = () => {
 
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="group bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-purple-400/50 transition-all duration-500"
-            >
-              {/* Rating */}
-              <div className="flex items-center gap-1 mb-6">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <FiStar
-                    key={i}
-                    className="w-5 h-5 text-yellow-400 fill-current"
-                  />
-                ))}
-              </div>
-
-              {/* Comment */}
-              <blockquote className="text-gray-300 text-lg leading-relaxed mb-8 italic">
-                &ldquo;{testimonial.comment}&rdquo;
-              </blockquote>
-
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-                  <FiUser className="w-6 h-6 text-white" />
+          {isTestimonialsLoading ? (
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+            </div>
+          ) : (
+            testimonials && testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-purple-400/50 transition-all duration-500"
+              >
+                {/* Rating */}
+                <div className="flex items-center gap-1 mb-6">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <FiStar
+                      key={i}
+                      className="w-5 h-5 text-yellow-400 fill-current"
+                    />
+                  ))}
                 </div>
-                <div>
-                  <h4 className="text-white font-semibold text-lg">{testimonial.name}</h4>
-                  <p className="text-purple-300 text-sm">{testimonial.position}</p>
-                </div>
-              </div>
 
-              {/* Hover Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-            </motion.div>
-          ))}
+                {/* Comment */}
+                <blockquote className="text-gray-300 text-lg leading-relaxed mb-8 italic">
+                  &ldquo;{testimonial.comment}&rdquo;
+                </blockquote>
+
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                    <FiUser className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold text-lg">{testimonial.name}</h4>
+                    <p className="text-purple-300 text-sm">{testimonial.position}</p>
+                  </div>
+                </div>
+
+                {/* Hover Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+              </motion.div>
+            )))}
         </div>
 
         {/* Stats Section */}
@@ -131,26 +145,31 @@ const Testimonial = () => {
             </h3>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { number: "98%", label: "Client Satisfaction" },
-                { number: "50+", label: "Projects Delivered" },
-                { number: "25+", label: "Happy Clients" },
-                { number: "5+", label: "Years Experience" }
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-center"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-gray-400">{stat.label}</div>
-                </motion.div>
-              ))}
+              {isCompanyInfoLoading ? (
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+                </div>
+              ) : (
+                [
+                  { number: `${companyInfo?.clientSatisficationRate}%`, label: "Client Satisfaction" },
+                  { number: `${companyInfo?.numberOfProjectsCompleted}+`, label: "Projects Delivered" },
+                  { number: `${companyInfo?.numberOfHappyClients}+`, label: "Happy Clients" },
+                  { number: `${companyInfo?.yearsOfExprience}+`, label: "Years Experience" }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="text-center"
+                  >
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-400">{stat.label}</div>
+                  </motion.div>
+                )))}
             </div>
 
             <motion.div

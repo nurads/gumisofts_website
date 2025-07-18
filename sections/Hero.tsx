@@ -2,20 +2,32 @@
 import { motion } from "framer-motion";
 import { FiArrowRight, FiPlay, FiCode, FiUsers, FiAward, FiTrendingUp } from "react-icons/fi";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { CompanyStats } from "@/types/api";
+import { getCompanyStats } from "@/services/company";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import Loader from "@/components/Loader";
 
 export default function Hero() {
+  const queryClient = useQueryClient();
   const smoothScroll = (targetId: string) => {
     const target = document.getElementById(targetId);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
   };
+  const { data: companyStats, isLoading: isCompanyStatsLoading, isError: isCompanyStatsError } = useQuery({
+    queryKey: ["company-stats"],
+    queryFn: getCompanyStats,
+
+  });
+
 
   const stats = [
-    { icon: FiUsers, value: "100+", label: "Happy Clients" },
-    { icon: FiCode, value: "500+", label: "Projects Delivered" },
-    { icon: FiAward, value: "5+", label: "Years Experience" },
-    { icon: FiTrendingUp, value: "99%", label: "Success Rate" }
+    { icon: FiUsers, value: companyStats?.numberOfHappyClients, label: "Happy Clients" },
+    { icon: FiCode, value: companyStats?.numberOfProjectsCompleted, label: "Projects Delivered" },
+    { icon: FiAward, value: companyStats?.numberOfYearsInBusiness, label: "Years Experience" },
+    { icon: FiTrendingUp, value: companyStats?.clientSatisficationRate, label: "Success Rate" }
   ];
 
   const technologies = [
@@ -100,28 +112,32 @@ export default function Hero() {
             </motion.div>
 
             {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8"
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                  className="text-center lg:text-left"
-                >
-                  <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
-                    <stat.icon className="w-5 h-5 text-blue-400" />
-                    <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  </div>
-                  <div className="text-sm text-blue-200">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
+            {isCompanyStatsLoading && <Loader variant="bars" />}
+            {isCompanyStatsError && <div>Error loading company stats</div>}
+            {companyStats && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8"
+              >
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+                    className="text-center lg:text-left"
+                  >
+                    <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
+                      <stat.icon className="w-5 h-5 text-blue-400" />
+                      <div className="text-2xl font-bold text-white">{stat.value}</div>
+                    </div>
+                    <div className="text-sm text-blue-200">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Right Section (Interactive Elements) */}

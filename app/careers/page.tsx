@@ -5,9 +5,13 @@ import { Job } from '@/types/api';
 import { apiService } from '@/services/api';
 import JobCard from '@/components/JobCard';
 import JobApplicationModal from '@/components/JobApplicationModal';
+
 import { FiUsers, FiGlobe, FiAward, FiTrendingUp, FiSearch } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { getCompanyInfo } from "@/services/company";
+import { useQuery } from "@tanstack/react-query";
+import { getJobs } from "@/services/careers";
 
 const Careers = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -16,24 +20,39 @@ const Careers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDepartment, setFilterDepartment] = useState('');
+  const { data: jobsData, isLoading: isJobsLoading, isError: isJobsError } = useQuery({
+    queryKey: ["jobs"],
+    queryFn: getJobs,
+
+  })
+
+  const { data: companyInfo, isLoading: isCompanyInfoLoading, isError: isCompanyInfoError } = useQuery({
+    queryKey: ["companyInfo"],
+    queryFn: getCompanyInfo,
+  });
+
 
   useEffect(() => {
     const fetchJobs = async () => {
-      try {
-        const response = await apiService.getJobs();
-        if (response.success) {
-          setJobs(response.data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch jobs:', error);
-        toast.error('Failed to load job listings');
-      } finally {
-        setLoading(false);
+
+      if (isJobsLoading) {
+        setLoading(true);
+        return;
       }
+
+      if (isJobsError) {
+        toast.error('Failed to fetch jobs');
+        setLoading(false);
+        return;
+      }
+
+      setJobs(jobsData || []);
+      setLoading(false);
+
     };
 
     fetchJobs();
-  }, []);
+  }, [jobsData]);
 
   const handleApply = (job: Job) => {
     setSelectedJob(job);
@@ -54,11 +73,12 @@ const Careers = () => {
 
   const departments = [...new Set(jobs.map(job => job.department))];
 
+
   const companyStats = [
-    { icon: FiUsers, value: "100+", label: "Team Members" },
-    { icon: FiGlobe, value: "25+", label: "Countries Served" },
-    { icon: FiAward, value: "50+", label: "Projects Delivered" },
-    { icon: FiTrendingUp, value: "99%", label: "Client Satisfaction" }
+    { icon: FiUsers, value: `${companyInfo?.numberOfEmployees}+`, label: "Team Members" },
+    { icon: FiGlobe, value: `${companyInfo?.numberOfProjectsCompleted}+`, label: "Projects Delivered" },
+    { icon: FiTrendingUp, value: `${companyInfo?.clientSatisficationRate}%`, label: "Client Satisfaction" }
+
   ];
 
   return (
@@ -141,7 +161,7 @@ const Careers = () => {
       <section className="relative py-16">
         <div className="container mx-auto px-6">
           <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20 shadow-2xl">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
               {companyStats.map((stat, index) => (
                 <motion.div
                   key={index}
@@ -179,7 +199,7 @@ const Careers = () => {
                     className="w-full pl-12 pr-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
                   />
                 </div>
-                <select
+                {/* <select
                   value={filterDepartment}
                   onChange={(e) => setFilterDepartment(e.target.value)}
                   className="px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
@@ -188,7 +208,7 @@ const Careers = () => {
                   {departments.map(dept => (
                     <option key={dept} value={dept} className="text-gray-900">{dept}</option>
                   ))}
-                </select>
+                </select> */}
               </div>
             </div>
           </div>

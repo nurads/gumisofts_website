@@ -3,6 +3,7 @@ import React from 'react';
 import { Job } from '@/types/api';
 import { motion } from 'framer-motion';
 import { FiMapPin, FiClock, FiBriefcase, FiCalendar, FiArrowRight } from 'react-icons/fi';
+import Link from 'next/link';
 
 interface JobCardProps {
     job: Job;
@@ -101,9 +102,12 @@ const JobCard: React.FC<JobCardProps> = ({ job, onApply }) => {
                     Apply Now
                     <FiArrowRight className="w-3 h-3 lg:w-4 lg:h-4" />
                 </button>
-                <button className="px-4 py-2.5 lg:px-6 lg:py-3 border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300">
+                <Link
+                    href={`/careers/${job.id}`}
+                    className="px-4 py-2.5 lg:px-6 lg:py-3 border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300 text-center"
+                >
                     Details
-                </button>
+                </Link>
             </div>
         </motion.div>
     );

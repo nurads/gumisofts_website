@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ReactQueryProvider } from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
@@ -36,13 +38,13 @@ export default function RootLayout({
         {/* Navbar appears on every page */}
         <div className="flex flex-col min-h-screen">
           {/* Navbar always at the top */}
-          <Navbar />
-
-          {/* Main content area fills the available space */}
-          <main className="flex-1">{children}</main>
-
-          {/* Footer always at the bottom */}
-          <Footer />
+          <ReactQueryProvider>
+            <Navbar />
+            {/* Main content area fills the available space */}
+            <main className="flex-1">{children}</main>
+            {/* Footer always at the bottom */}
+            <Footer />
+          </ReactQueryProvider>
         </div>
       </body>
     </html>

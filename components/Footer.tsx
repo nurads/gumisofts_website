@@ -9,9 +9,15 @@ import {
   FaTwitter,
   FaPhone,
   FaMapMarkerAlt,
+  FaFacebook,
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FiArrowRight, FiSend } from "react-icons/fi";
+import { subscribeToNewsletter } from "@/services/general";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { FormEvent, useState } from "react";
+import { getCompanyInfo } from "@/services/company";
 
 const Footer = () => {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -22,12 +28,24 @@ const Footer = () => {
     }
   };
 
+  const { mutate: subscribeToNewsletterMutation, isPending: isSubscribingToNewsletter } = useMutation({
+    mutationFn: subscribeToNewsletter,
+    onSuccess: () => {
+      toast.success("Subscribed to newsletter successfully");
+    },
+  });
+
+  const { data: companyInfo, isLoading: isCompanyInfoLoading, isError: isCompanyInfoError } = useQuery({
+    queryKey: ["companyInfo"],
+    queryFn: getCompanyInfo,
+  });
+
   const socialLinks = [
-    { icon: FaInstagram, href: "https://instagram.com/instagram", color: "hover:text-pink-400" },
-    { icon: FaTelegramPlane, href: "https://t.me/gumisofts", color: "hover:text-blue-400" },
-    { icon: FaLinkedin, href: "https://linkedin.com/in/gumisofts", color: "hover:text-blue-500" },
-    { icon: FaWhatsapp, href: "https://wa.me/251953541616", color: "hover:text-green-400" },
-    { icon: FaTwitter, href: "https://twitter.com/gumisofts", color: "hover:text-sky-400" },
+    { icon: FaInstagram, href: companyInfo?.instagramUrl || "", color: "hover:text-pink-400" },
+    { icon: FaTelegramPlane, href: companyInfo?.telegramUrl || "", color: "hover:text-blue-400" },
+    { icon: FaLinkedin, href: companyInfo?.linkedinUrl || "", color: "hover:text-blue-500" },
+    { icon: FaWhatsapp, href: companyInfo?.whatsappUrl || "", color: "hover:text-green-400" },
+    { icon: FaFacebook, href: companyInfo?.facebookUrl || "", color: "hover:text-sky-400" },
   ];
 
   const quickLinks = [
@@ -39,10 +57,18 @@ const Footer = () => {
     { name: "Careers", href: "/careers" },
   ];
 
+  const [email, setEmail] = useState("");
+
+  const handleSubscribeToNewsletter = (e: React.FormEvent) => {
+    e.preventDefault();
+    subscribeToNewsletterMutation(email);
+    setEmail("");
+  };
+
   const contactInfo = [
-    { icon: MdEmail, text: "contact@gumisofts.com", href: "mailto:contact@gumisofts.com" },
-    { icon: FaPhone, text: "+251 953 5416 161", href: "tel:+251953541616" },
-    { icon: FaMapMarkerAlt, text: "Adama, Ethiopia", href: "#" },
+    { icon: MdEmail, text: companyInfo?.email || "", href: "mailto:contact@gumisofts.com" },
+    { icon: FaPhone, text: companyInfo?.phone || "", href: "tel:+251953541616" },
+    { icon: FaMapMarkerAlt, text: companyInfo?.address || "", href: "#" },
   ];
 
   return (
@@ -167,15 +193,18 @@ const Footer = () => {
                   type="email"
                   placeholder="Enter your email"
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full cursor-pointer bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2"
+                onClick={handleSubscribeToNewsletter}
               >
-                Subscribe
+                {isSubscribingToNewsletter ? "Subscribing..." : "Subscribe"}
                 <FiSend className="w-4 h-4" />
               </motion.button>
             </form>

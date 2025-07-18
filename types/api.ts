@@ -35,7 +35,7 @@ export interface FAQ {
     order: number;
 }
 
-export interface Job {
+export type Job = {
     id: string;
     title: string;
     department: string;
@@ -68,6 +68,14 @@ export interface JobApplication {
     status: 'pending' | 'reviewed' | 'interview' | 'hired' | 'rejected';
 }
 
+export type JobApplicationRequest = {
+    full_name: string;
+    email: string;
+    linkedIn: string;
+    resume: File | string;
+    cover_letter?: string;
+}
+
 export interface BlogPost {
     id: string;
     title: string;
@@ -90,15 +98,14 @@ export interface BlogPost {
     views: number;
 }
 
-export interface Testimonial {
+export type Testimonial = {
     id: string;
     name: string;
     position: string;
     company: string;
-    image: string;
-    content: string;
+    avatar: string;
+    comment: string;
     rating: number;
-    date: string;
 }
 
 // API Response Types
@@ -119,4 +126,49 @@ export interface ApiError {
     error: string;
     message: string;
     statusCode: number;
-} 
+}
+
+export type CompanyStats = {
+    id: number,
+    companyName: string,
+    numberOfEmployees: number,
+    numberOfProjectsCompleted: number,
+    clientSatisficationRate: number,
+    numberOfHappyClients: number,
+    numberOfYearsInBusiness: number,
+    companyLocation: string
+
+}
+
+export type Message = {
+    full_name: string,
+    email: string,
+    content: string,
+}
+
+
+
+export type CompanyInfo = {
+    id: string,
+    companyName: string,
+    email: string,
+    phone: string,
+    address: string,
+    yearsOfExprience: number,
+    clientSatisficationRate: number,
+    numberOfProjectsCompleted: number,
+    numberOfHappyClients: number,
+    numberOfYearsInBusiness: number,
+    scheduleUrl: string,
+    linkedinUrl: string,
+    githubUrl: string,
+    telegramUrl: string,
+    facebookUrl: string,
+    instagramUrl: string,
+    whatsappUrl: string,
+    youtubeUrl: string,
+    isDefault: boolean
+    numberOfEmployees: number,
+    numberOfServices: number
+
+}
