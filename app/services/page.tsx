@@ -14,7 +14,7 @@ const ServicesPage = () => {
     const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('all');
 
-    const { data: companyInfo, isLoading: isCompanyInfoLoading, isError: isCompanyInfoError } = useQuery({
+    const { data: companyInfo } = useQuery({
         queryKey: ["companyInfo"],
         queryFn: getCompanyInfo,
     });
@@ -57,13 +57,6 @@ const ServicesPage = () => {
         return IconComponent;
     };
 
-    const formatPrice = (price: number) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 0
-        }).format(price);
-    };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">

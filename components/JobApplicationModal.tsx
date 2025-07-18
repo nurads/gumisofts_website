@@ -1,9 +1,8 @@
 "use client";
 import React, { useState } from 'react';
-import { Job, JobApplication, JobApplicationRequest } from '@/types/api';
+import { Job, JobApplicationRequest } from '@/types/api';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiUpload, FiUser, FiMail, FiLinkedin, FiFileText, FiArrowRight } from 'react-icons/fi';
-import { apiService } from '@/services/api';
 import { toast } from 'react-toastify';
 import { useMutation } from '@tanstack/react-query';
 import { applyJob } from '@/services/careers';

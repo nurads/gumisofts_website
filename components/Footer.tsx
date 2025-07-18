@@ -6,7 +6,6 @@ import {
   FaTelegramPlane,
   FaLinkedin,
   FaWhatsapp,
-  FaTwitter,
   FaPhone,
   FaMapMarkerAlt,
   FaFacebook,
@@ -14,9 +13,9 @@ import {
 import { MdEmail } from "react-icons/md";
 import { FiArrowRight, FiSend } from "react-icons/fi";
 import { subscribeToNewsletter } from "@/services/general";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { getCompanyInfo } from "@/services/company";
 
 const Footer = () => {
@@ -35,7 +34,7 @@ const Footer = () => {
     },
   });
 
-  const { data: companyInfo, isLoading: isCompanyInfoLoading, isError: isCompanyInfoError } = useQuery({
+  const { data: companyInfo } = useQuery({
     queryKey: ["companyInfo"],
     queryFn: getCompanyInfo,
   });

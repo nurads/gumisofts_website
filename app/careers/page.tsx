@@ -2,11 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Job } from '@/types/api';
-import { apiService } from '@/services/api';
 import JobCard from '@/components/JobCard';
 import JobApplicationModal from '@/components/JobApplicationModal';
 
-import { FiUsers, FiGlobe, FiAward, FiTrendingUp, FiSearch } from 'react-icons/fi';
+import { FiUsers, FiGlobe, FiTrendingUp, FiSearch } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { getCompanyInfo } from "@/services/company";
@@ -26,7 +25,7 @@ const Careers = () => {
 
   })
 
-  const { data: companyInfo, isLoading: isCompanyInfoLoading, isError: isCompanyInfoError } = useQuery({
+  const { data: companyInfo } = useQuery({
     queryKey: ["companyInfo"],
     queryFn: getCompanyInfo,
   });
@@ -71,7 +70,7 @@ const Careers = () => {
     return matchesSearch && matchesDepartment;
   });
 
-  const departments = [...new Set(jobs.map(job => job.department))];
+  // const departments = [...new Set(jobs.map(job => job.department))];
 
 
   const companyStats = [

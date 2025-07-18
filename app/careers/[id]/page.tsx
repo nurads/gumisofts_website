@@ -1,10 +1,9 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Job } from '@/types/api';
-import { apiService } from '@/services/api';
 import { FiArrowLeft, FiMapPin, FiClock, FiBriefcase, FiCalendar, FiDollarSign, FiCheck, FiGift, FiArrowRight } from 'react-icons/fi';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import JobApplicationModal from '@/components/JobApplicationModal';
@@ -17,7 +16,7 @@ const JobDetailPage = () => {
     const [selectedJob, setSelectedJob] = useState<Job | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { data: job, isLoading, isError } = useQuery({
+    const { data: job, isLoading } = useQuery({
         queryKey: ["job", params.id],
         queryFn: () => getJob(params.id as string),
     });
@@ -72,7 +71,7 @@ const JobDetailPage = () => {
             <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black flex items-center justify-center">
                 <div className="text-center">
                     <h1 className="text-4xl font-bold text-white mb-4">Job Not Found</h1>
-                    <p className="text-gray-300 mb-8">The job you're looking for doesn't exist or has been removed.</p>
+                    <p className="text-gray-300 mb-8">The job you&apos;re looking for doesn&apos;t exist or has been removed.</p>
                     <Link
                         href="/careers"
                         className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
