@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { services } from "../constants";
 import { FiArrowRight, FiStar } from "react-icons/fi";
 import Link from "next/link";
+import { formatServiceUrl } from "../lib/utils";
 
 const Service = () => {
   return (
@@ -85,10 +86,13 @@ const Service = () => {
               </p>
 
               {/* Learn More Button */}
-              <div className="flex items-center text-blue-400 group-hover:text-white transition-colors duration-300">
+              <Link
+                href={`/services/${formatServiceUrl(service.title)}`}
+                className="flex items-center text-blue-400 group-hover:text-white transition-colors duration-300 cursor-pointer"
+              >
                 <span className="font-medium">Learn More</span>
                 <FiArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform duration-300" />
-              </div>
+              </Link>
 
               {/* Hover Effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>

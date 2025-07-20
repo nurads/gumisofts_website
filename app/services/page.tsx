@@ -2,40 +2,40 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Service } from '@/types/api';
-import { apiService } from '@/services/api';
-import { FiArrowRight, FiCheck, FiCode, FiEdit, FiCloud, FiSmartphone, FiDatabase, FiShield, FiStar } from 'react-icons/fi';
+import { FiArrowRight, FiCheck, FiCloud, FiStar } from 'react-icons/fi';
+import * as Icons from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { getCompanyInfo } from '@/services/company';
+import { getCompanyInfo, getServices } from '@/services/company';
 import { useQuery } from '@tanstack/react-query';
 
 const ServicesPage = () => {
     const [services, setServices] = useState<Service[]>([]);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('all');
 
+    const { data: servicesData, isLoading: servicesLoading, isError: servicesError } = useQuery({
+        queryKey: ["services"],
+        queryFn: getServices,
+    });
     const { data: companyInfo } = useQuery({
         queryKey: ["companyInfo"],
         queryFn: getCompanyInfo,
     });
 
     useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const response = await apiService.getServices();
-                if (response.success) {
-                    setServices(response.data);
-                }
-            } catch (error) {
-                console.error('Failed to fetch services:', error);
-                toast.error('Failed to load services');
-            } finally {
-                setLoading(false);
-            }
-        };
+        if (servicesData) {
+            setServices(servicesData);
+        }
+    }, [servicesData]);
 
-        fetchServices();
-    }, []);
+    useEffect(() => {
+        if (servicesError) {
+            toast.error('Failed to load services');
+        }
+    }, [servicesError]);
+
+
 
     const filteredServices = selectedCategory === 'all'
         ? services
@@ -43,18 +43,9 @@ const ServicesPage = () => {
 
     const categories = ['all', ...new Set(services.map(service => service.category.toLowerCase()))];
 
-    const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
-        '💻': FiCode,
-        '🎨': FiEdit,
-        '☁️': FiCloud,
-        '📱': FiSmartphone,
-        '🗄️': FiDatabase,
-        '🔒': FiShield
-    };
 
     const getIconComponent = (iconKey: string) => {
-        const IconComponent = iconMap[iconKey] || FiCode;
-        return IconComponent;
+        return Icons[iconKey as keyof typeof Icons] || FiCloud;
     };
 
 
@@ -153,7 +144,7 @@ const ServicesPage = () => {
             <section className="relative py-24">
                 <div className="container mx-auto px-6">
                     <div className="max-w-7xl mx-auto">
-                        {loading ? (
+                        {servicesLoading ? (
                             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {[...Array(6)].map((_, index) => (
                                     <div key={index} className="bg-white/15 backdrop-blur-lg rounded-3xl p-8 animate-pulse border border-white/30">
@@ -274,22 +265,17 @@ const ServicesPage = () => {
                                 viewport={{ once: true }}
                                 className="flex flex-col sm:flex-row gap-4 justify-center"
                             >
-                                <button
-                                    onClick={() => {
-                                        const section = document.getElementById("contact");
-                                        if (section) {
-                                            section.scrollIntoView({ behavior: "smooth" });
-                                        }
-                                    }}
+                                <a
+                                    href={`/#contact`}
                                     className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2"
                                 >
                                     Start Your Project
                                     <FiArrowRight className="w-5 h-5" />
-                                </button>
+                                </a>
 
-                                <button className="border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
+                                <a href={companyInfo?.scheduleUrl || ''} target="_blank" className="border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
                                     Schedule Consultation
-                                </button>
+                                </a>
                             </motion.div>
                         </div>
                     </div>

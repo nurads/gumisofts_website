@@ -1,5 +1,5 @@
 import axiosInstance from "@/config/axiosConfig";
-import { CompanyInfo, CompanyStats, Testimonial } from "@/types/api";
+import { CompanyInfo, CompanyStats, Service, Testimonial } from "@/types/api";
 
 function getCompanyStats(): Promise<CompanyStats> {
     return axiosInstance.get('/accounts/company-stats/').then(res => res.data[0]);
@@ -13,4 +13,13 @@ function getTestimonials(): Promise<Testimonial[]> {
     return axiosInstance.get('/clients/testimonials/').then(res => res.data);
 }
 
-export { getCompanyStats, getCompanyInfo, getTestimonials };
+function getServices(): Promise<Service[]> {
+    return axiosInstance.get('/clients/services/').then(res => res.data);
+}
+
+function getService(id: string): Promise<Service> {
+    return axiosInstance.get(`/clients/services/${id}/`).then(res => res.data);
+}
+
+
+export { getCompanyStats, getCompanyInfo, getTestimonials, getServices, getService };

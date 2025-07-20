@@ -53,7 +53,7 @@ const mockServices: Service[] = [
         title: 'Custom Software Development',
         description: 'End-to-end custom software solutions tailored to your business needs. From concept to deployment, we create scalable and maintainable applications.',
         shortDescription: 'Tailored software solutions for your business',
-        icon: '💻',
+        icon: 'FiCode',
         features: [
             'Full-stack web development',
             'Mobile app development',
@@ -73,7 +73,7 @@ const mockServices: Service[] = [
         title: 'UI/UX Design',
         description: 'Beautiful, intuitive, and user-centered design solutions that enhance user experience and drive engagement.',
         shortDescription: 'Beautiful and intuitive user interfaces',
-        icon: '🎨',
+        icon: 'FiEdit',
         features: [
             'User interface design',
             'User experience optimization',
@@ -93,7 +93,7 @@ const mockServices: Service[] = [
         title: 'Cloud Solutions',
         description: 'Comprehensive cloud infrastructure and migration services to scale your business efficiently.',
         shortDescription: 'Scalable cloud infrastructure solutions',
-        icon: '☁️',
+        icon: 'FiCloud',
         features: [
             'Cloud migration',
             'Infrastructure as code',

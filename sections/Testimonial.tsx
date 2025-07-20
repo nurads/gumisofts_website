@@ -3,27 +3,10 @@ import { motion } from "framer-motion";
 import { FiStar, FiUser } from "react-icons/fi";
 import { useQuery } from "@tanstack/react-query";
 import { getCompanyInfo, getTestimonials } from "@/services/company";
+import Loader from "@/components/Loader";
 
 const Testimonial = () => {
-  // const testimonials = [
 
-  //   {
-  //     id: 2,
-  //     name: "Michael Chen",
-  //     position: "CTO, InnovateLab",
-  //     rating: 5,
-  //     comment: "Outstanding work on our mobile application. The development process was smooth, and the final product was exactly what we envisioned. Highly recommended for any software development needs.",
-  //     avatar: "/assets/avatar2.jpg"
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Emily Rodriguez",
-  //     position: "Founder, DigitalFlow",
-  //     rating: 5,
-  //     comment: "Working with Gumisofts was a game-changer for our business. They not only built an amazing platform but also provided valuable insights that improved our overall business strategy.",
-  //     avatar: "/assets/avatar3.jpg"
-  //   }
-  // ];
 
   const { data: companyInfo, isLoading: isCompanyInfoLoading } = useQuery({
     queryKey: ["companyInfo"],
@@ -38,6 +21,10 @@ const Testimonial = () => {
     staleTime: 1000 * 60 * 60 * 24,
     refetchOnWindowFocus: false
   });
+
+  if (testimonials && testimonials.length === 0) {
+    return null;
+  }
 
   return (
     <section
@@ -83,13 +70,13 @@ const Testimonial = () => {
         </motion.div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {isTestimonialsLoading ? (
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
-            </div>
-          ) : (
-            testimonials && testimonials.map((testimonial, index) => (
+        {isTestimonialsLoading ? (
+          <div className="flex justify-center items-center w-full h-full">
+            <Loader variant="bars" />
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {testimonials && testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -128,73 +115,77 @@ const Testimonial = () => {
                 {/* Hover Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
               </motion.div>
-            )))}
-        </div>
-
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-12 border border-white/10">
-            <h3 className="text-3xl font-bold text-white mb-8">
-              Trusted by Industry Leaders
-            </h3>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {isCompanyInfoLoading ? (
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
-                </div>
-              ) : (
-                [
-                  { number: `${companyInfo?.clientSatisficationRate}%`, label: "Client Satisfaction" },
-                  { number: `${companyInfo?.numberOfProjectsCompleted}+`, label: "Projects Delivered" },
-                  { number: `${companyInfo?.numberOfHappyClients}+`, label: "Happy Clients" },
-                  { number: `${companyInfo?.yearsOfExprience}+`, label: "Years Experience" }
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="text-center"
-                  >
-                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                      {stat.number}
-                    </div>
-                    <div className="text-gray-400">{stat.label}</div>
-                  </motion.div>
-                )))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="mt-12"
-            >
-              <button
-                onClick={() => {
-                  const section = document.getElementById("contact");
-                  if (section) {
-                    section.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
-              >
-                Join Our Success Stories
-              </button>
-            </motion.div>
+            ))}
           </div>
-        </motion.div>
+        )}
       </div>
-    </section>
+
+      {/* Stats Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-center"
+      >
+        <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-12 border border-white/10">
+          <h3 className="text-3xl font-bold text-white mb-8">
+            Trusted by Industry Leaders
+          </h3>
+
+          {isCompanyInfoLoading ? (
+            <div className="flex justify-center items-center w-full h-full">
+              <Loader variant="bars" />
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                { number: `${companyInfo?.clientSatisficationRate}%`, label: "Client Satisfaction" },
+                { number: `${companyInfo?.numberOfProjectsCompleted}+`, label: "Projects Delivered" },
+                { number: `${companyInfo?.numberOfHappyClients}+`, label: "Happy Clients" },
+                { number: `${companyInfo?.yearsOfExprience}+`, label: "Years Experience" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-gray-400">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-12"
+          >
+            <button
+              onClick={() => {
+                const section = document.getElementById("contact");
+                if (section) {
+                  section.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
+            >
+              Join Our Success Stories
+            </button>
+          </motion.div>
+        </div>
+      </motion.div>
+    </section >
   );
 };
 

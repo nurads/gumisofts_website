@@ -1,6 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
 import { FiTarget, FiHeart, FiUsers, FiAward, FiTrendingUp, FiGlobe } from "react-icons/fi";
+import { useQuery } from "@tanstack/react-query";
+import { getCompanyInfo } from "@/services/company";
+import Link from "next/link";
 
 const About = () => {
   const values = [
@@ -24,11 +27,16 @@ const About = () => {
     },
   ];
 
+  const { data: companyInfo } = useQuery({
+    queryKey: ["companyInfo"],
+    queryFn: getCompanyInfo,
+  });
+
   const stats = [
-    { icon: FiUsers, value: "100+", label: "Team Members" },
-    { icon: FiGlobe, value: "25+", label: "Countries Served" },
-    { icon: FiAward, value: "50+", label: "Projects Delivered" },
-    { icon: FiTrendingUp, value: "99%", label: "Client Satisfaction" }
+    { icon: FiUsers, value: `${companyInfo?.numberOfEmployees}+`, label: "Team Members" },
+    { icon: FiGlobe, value: `${companyInfo?.numberOfHappyClients}+`, label: "Happy Clients" },
+    { icon: FiAward, value: `${companyInfo?.numberOfProjectsCompleted}+`, label: "Projects Delivered" },
+    { icon: FiTrendingUp, value: `${companyInfo?.clientSatisficationRate}%`, label: "Client Satisfaction" }
   ];
 
   return (
@@ -274,21 +282,16 @@ const About = () => {
                 viewport={{ once: true }}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <button
-                  onClick={() => {
-                    const section = document.getElementById("contact");
-                    if (section) {
-                      section.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
+                <Link
+                  href="/#contact"
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
                 >
                   Start Your Project
-                </button>
+                </Link>
 
-                <button className="border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
+                <Link href="/services" className="border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
                   Learn More
-                </button>
+                </Link>
               </motion.div>
             </div>
           </div>

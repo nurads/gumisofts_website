@@ -196,25 +196,7 @@ const BlogPage = () => {
                             Insights, tutorials, and trends from the world of software development and technology innovation
                         </motion.p>
 
-                        {/* Stats */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.6 }}
-                            className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12"
-                        >
-                            {[
-                                { number: "100+", label: "Articles Published" },
-                                { number: "50K+", label: "Monthly Readers" },
-                                { number: "25+", label: "Expert Authors" },
-                                { number: "15+", label: "Tech Topics" }
-                            ].map((stat, index) => (
-                                <div key={index} className="text-center">
-                                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.number}</div>
-                                    <div className="text-gray-400 text-sm">{stat.label}</div>
-                                </div>
-                            ))}
-                        </motion.div>
+
                     </div>
                 </div>
             </section>

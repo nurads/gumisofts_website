@@ -119,15 +119,8 @@ const Navbar = () => {
           >
 
             <Link
-              href="#contact"
+              href="/#contact"
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
-              onClick={(e) => {
-                e.preventDefault();
-                const section = document.getElementById("contact");
-                if (section) {
-                  section.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
             >
               Get Started
             </Link>
@@ -171,7 +164,7 @@ const Navbar = () => {
         {/* Mobile Menu Header */}
         <div className="flex items-center justify-between p-6 border-b border-white/10">
           <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-            
+
             <Image src="/assets/logo-white.png" alt="Gumisofts" width={64} height={64} />
             <span className="text-xl font-bold text-white">
               Gumisofts
