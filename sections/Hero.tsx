@@ -112,8 +112,6 @@ export default function Hero() {
             </motion.div>
 
             {/* Stats */}
-            {isCompanyStatsLoading && <Loader variant="bars" />}
-            {isCompanyStatsError && <div>Error loading company stats</div>}
             {companyStats && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -155,34 +153,44 @@ export default function Hero() {
                     <FiCode className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">Latest Project</h3>
-                    <p className="text-blue-200">Simple Time Tracker</p>
+                    <h3 className="text-xl font-bold text-white">Technology Expertise</h3>
+                    <p className="text-blue-200">Our Core Stack</p>
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-blue-200">Progress</span>
-                    <span className="text-white font-semibold">85%</span>
-                  </div>
-                  <div className="w-full bg-white/20 rounded-full h-2">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: "30%" }}
-                      transition={{ duration: 2, delay: 1.5 }}
-                      className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
-                    ></motion.div>
-                  </div>
+                <div className="space-y-4">
+                  {[
+                    { name: "React/Next.js", level: 95 },
+                    { name: "Flutter/Dart", level: 95 },
+                    { name: "Node.js/Python", level: 95 },
+                    { name: "Cloud & DevOps", level: 90 },
+                    { name: "AI/ML", level: 90 },
+                  ].map((tech, index) => (
+                    <div key={tech.name} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-blue-200 text-sm">{tech.name}</span>
+                        <span className="text-white font-semibold text-sm">{tech.level}%</span>
+                      </div>
+                      <div className="w-full bg-white/20 rounded-full h-2">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${tech.level}%` }}
+                          transition={{ duration: 2, delay: 1.5 + index * 0.2 }}
+                          className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
+                        ></motion.div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-3 bg-white/5 rounded-lg">
-                    <div className="text-2xl font-bold text-white">45</div>
-                    <div className="text-xs text-blue-200">Days Left</div>
+                    <div className="text-2xl font-bold text-white">24/7</div>
+                    <div className="text-xs text-blue-200">Support</div>
                   </div>
                   <div className="text-center p-3 bg-white/5 rounded-lg">
-                    <div className="text-2xl font-bold text-white">4</div>
-                    <div className="text-xs text-blue-200">Team Members</div>
+                    <div className="text-2xl font-bold text-white">98%</div>
+                    <div className="text-xs text-blue-200">Quality</div>
                   </div>
                 </div>
               </div>
@@ -194,7 +202,7 @@ export default function Hero() {
                 transition={{ duration: 1, delay: 2 }}
                 className="absolute -top-4 -right-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
               >
-                React + TypeScript
+                Full Stack Experts
               </motion.div>
             </div>
 
