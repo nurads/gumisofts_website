@@ -26,11 +26,6 @@ export const navLinks = [
   },
   {
     id: 6,
-    name: "Blog",
-    href: "/blog",
-  },
-  {
-    id: 7,
     name: "Careers",
     href: "/careers",
   },

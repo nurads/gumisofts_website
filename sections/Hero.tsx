@@ -37,31 +37,23 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white overflow-hidden"
+      className="relative min-h-screen flex items-center bg-white text-gray-900 overflow-hidden"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-2000"></div>
-      </div>
-
-      <div className="relative container mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-2 items-center gap-12">
-          {/* Left Section (Text) */}
+      <div className="relative container mx-auto px-6 py-16 md:py-24">
+        <div className="flex items-center justify-center min-h-[80vh]">
+          {/* Main Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left space-y-8"
+            className="text-center space-y-12 md:space-y-16 max-w-4xl w-full"
           >
-            <div className="space-y-6">
+            <div className="space-y-8 md:space-y-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-block bg-blue-600/20 text-blue-300 px-4 py-2 rounded-full text-sm font-medium"
+                className="inline-block bg-gray-100 text-gray-900 px-4 py-2 rounded-full text-sm font-medium shadow-sm"
               >
                 🚀 Leading Software Development Company
               </motion.div>
@@ -70,19 +62,19 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-5xl md:text-7xl font-bold leading-tight"
+                className="text-5xl md:text-7xl font-bold leading-tight text-[#2b3991] mb-4"
               >
-                Beyond <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Software</span>
+                Beyond <span className="text-gray-700">Software</span>
                 <br />
                 We Build{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Success</span>
+                <span className="text-gray-800">Success</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-2xl"
+                className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mt-6"
               >
                 We build smart, scalable software solutions that transform ideas into powerful digital experiences and drive unprecedented business growth.
               </motion.p>
@@ -92,11 +84,11 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
             >
               <button
                 onClick={() => smoothScroll("contact")}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl"
+                className="bg-[#2b3991] hover:bg-[#1f2a6b] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg"
               >
                 Get Started Today
                 <FiArrowRight className="w-5 h-5" />
@@ -104,7 +96,7 @@ export default function Hero() {
 
               <Link
                 href="/services"
-                className="border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2"
+                className="border-2 border-gray-300 hover:border-[#2b3991] text-[#2b3991] hover:bg-gray-50 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <FiPlay className="w-5 h-5" />
                 View Our Work
@@ -117,7 +109,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8"
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pt-12 md:pt-16"
               >
                 {stats.map((stat, index) => (
                   <motion.div
@@ -125,121 +117,17 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                    className="text-center lg:text-left"
+                    className="text-center"
                   >
-                    <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
-                      <stat.icon className="w-5 h-5 text-blue-400" />
-                      <div className="text-2xl font-bold text-white">{stat.value}</div>
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <stat.icon className="w-5 h-5 text-[#2b3991]" />
+                      <div className="text-2xl font-bold text-[#2b3991]">{stat.value}</div>
                     </div>
-                    <div className="text-sm text-blue-200">{stat.label}</div>
+                    <div className="text-sm text-gray-600">{stat.label}</div>
                   </motion.div>
                 ))}
               </motion.div>
             )}
-          </motion.div>
-
-          {/* Right Section (Interactive Elements) */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
-          >
-            {/* Main Card */}
-            <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                    <FiCode className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white">Technology Expertise</h3>
-                    <p className="text-blue-200">Our Core Stack</p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  {[
-                    { name: "React/Next.js", level: 95 },
-                    { name: "Flutter/Dart", level: 95 },
-                    { name: "Node.js/Python", level: 95 },
-                    { name: "Cloud & DevOps", level: 90 },
-                    { name: "AI/ML", level: 90 },
-                  ].map((tech, index) => (
-                    <div key={tech.name} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-blue-200 text-sm">{tech.name}</span>
-                        <span className="text-white font-semibold text-sm">{tech.level}%</span>
-                      </div>
-                      <div className="w-full bg-white/20 rounded-full h-2">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${tech.level}%` }}
-                          transition={{ duration: 2, delay: 1.5 + index * 0.2 }}
-                          className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
-                        ></motion.div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center p-3 bg-white/5 rounded-lg">
-                    <div className="text-2xl font-bold text-white">24/7</div>
-                    <div className="text-xs text-blue-200">Support</div>
-                  </div>
-                  <div className="text-center p-3 bg-white/5 rounded-lg">
-                    <div className="text-2xl font-bold text-white">98%</div>
-                    <div className="text-xs text-blue-200">Quality</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Tech Stack */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 2 }}
-                className="absolute -top-4 -right-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
-              >
-                Full Stack Experts
-              </motion.div>
-            </div>
-
-            {/* Floating Technology Pills */}
-            <div className="absolute inset-0 -z-10">
-              {technologies.map((tech, index) => (
-                <motion.div
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    y: [0, -10, 0],
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 2.5 + index * 0.1,
-                    y: {
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: index * 0.5
-                    }
-                  }}
-                  className={`absolute bg-white/10 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm border border-white/20 ${index % 4 === 0 ? 'top-0 left-0' :
-                    index % 4 === 1 ? 'top-1/4 right-0' :
-                      index % 4 === 2 ? 'bottom-1/4 left-0' :
-                        'bottom-0 right-1/4'
-                    }`}
-                  style={{
-                    transform: `translate(${(index % 3) * 20 - 40}px, ${(index % 2) * 30 - 15}px)`
-                  }}
-                >
-                  {tech}
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </div>
 
@@ -253,15 +141,15 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="text-white/60 text-center cursor-pointer"
+            className="text-gray-400 text-center cursor-pointer"
             onClick={() => smoothScroll("services")}
           >
             <div className="text-sm mb-2">Scroll to explore</div>
-            <div className="w-6 h-10 border-2 border-white/30 rounded-full mx-auto flex justify-center">
+            <div className="w-6 h-10 border-2 border-gray-300 rounded-full mx-auto flex justify-center">
               <motion.div
                 animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-1 h-3 bg-white/60 rounded-full mt-2"
+                className="w-1 h-3 bg-gray-400 rounded-full mt-2"
               ></motion.div>
             </div>
           </motion.div>

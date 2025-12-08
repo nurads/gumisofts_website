@@ -29,16 +29,8 @@ const Testimonial = () => {
   return (
     <section
       id="testimonials"
-      className="relative py-24 bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 text-white overflow-hidden"
+      className="relative py-24 bg-white text-gray-900 overflow-hidden"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 right-1/3 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-2000"></div>
-      </div>
-
       <div className="relative container mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -52,19 +44,19 @@ const Testimonial = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block bg-purple-600/20 text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-6"
+            className="inline-block bg-gray-100 text-gray-900 px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-sm"
           >
             ⭐ Client Testimonials
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-[#2b3991]">
             What Our Clients{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+            <span className="text-gray-700">
               Say
             </span>
           </h2>
 
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Don&apos;t just take our word for it. Here&apos;s what our satisfied clients have to say about working with us.
           </p>
         </motion.div>
@@ -84,36 +76,36 @@ const Testimonial = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-purple-400/50 transition-all duration-500"
+                className="group bg-white rounded-3xl p-8 border border-gray-200 hover:border-[#2b3991] hover:shadow-xl transition-all duration-500"
               >
                 {/* Rating */}
                 <div className="flex items-center gap-1 mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <FiStar
                       key={i}
-                      className="w-5 h-5 text-yellow-400 fill-current"
+                      className="w-5 h-5 text-[#2b3991] fill-current"
                     />
                   ))}
                 </div>
 
                 {/* Comment */}
-                <blockquote className="text-gray-300 text-lg leading-relaxed mb-8 italic">
+                <blockquote className="text-gray-600 text-lg leading-relaxed mb-8 italic">
                   &ldquo;{testimonial.comment}&rdquo;
                 </blockquote>
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-[#2b3991] rounded-full flex items-center justify-center">
                     <FiUser className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold text-lg">{testimonial.name}</h4>
-                    <p className="text-purple-300 text-sm">{testimonial.position}</p>
+                    <h4 className="text-[#2b3991] font-semibold text-lg">{testimonial.name}</h4>
+                    <p className="text-gray-600 text-sm">{testimonial.position}</p>
                   </div>
                 </div>
 
                 {/* Hover Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                <div className="absolute inset-0 bg-gray-50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
               </motion.div>
             ))}
           </div>
@@ -128,8 +120,8 @@ const Testimonial = () => {
         viewport={{ once: true }}
         className="text-center"
       >
-        <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-12 border border-white/10">
-          <h3 className="text-3xl font-bold text-white mb-8">
+        <div className="bg-gray-50 rounded-3xl p-12 border border-gray-200">
+          <h3 className="text-3xl font-bold text-[#2b3991] mb-8">
             Trusted by Industry Leaders
           </h3>
 
@@ -153,10 +145,10 @@ const Testimonial = () => {
                   viewport={{ once: true }}
                   className="text-center"
                 >
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                  <div className="text-3xl md:text-4xl font-bold text-[#2b3991] mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-gray-400">{stat.label}</div>
+                  <div className="text-gray-600">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -178,7 +170,7 @@ const Testimonial = () => {
                   section.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
+              className="bg-[#2b3991] hover:bg-[#1f2a6b] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               Join Our Success Stories
             </button>

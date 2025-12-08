@@ -104,15 +104,15 @@ const ServiceDetailPage = () => {
                             </Link>
                         </motion.div>
 
-                        <div className="flex flex-col lg:flex-row items-start gap-12">
+                        <div className="flex flex-col items-center text-center">
                             {/* Service Icon */}
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.6 }}
-                                className="relative"
+                                className="relative mb-8"
                             >
-                                <div className="w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl flex items-center justify-center shadow-2xl">
+                                <div className="w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl flex items-center justify-center shadow-2xl mx-auto">
                                     <IconComponent className="w-16 h-16 text-white" />
                                 </div>
                                 <div className="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
@@ -121,7 +121,7 @@ const ServiceDetailPage = () => {
                             </motion.div>
 
                             {/* Service Info */}
-                            <div className="flex-1">
+                            <div className="max-w-3xl">
                                 <motion.div
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -154,7 +154,7 @@ const ServiceDetailPage = () => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.6 }}
-                                    className="flex flex-col sm:flex-row gap-4"
+                                    className="flex flex-col sm:flex-row gap-4 justify-center"
                                 >
                                     <button
                                         onClick={scrollToContact}

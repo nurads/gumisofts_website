@@ -40,11 +40,11 @@ const Footer = () => {
   });
 
   const socialLinks = [
-    { icon: FaInstagram, href: companyInfo?.instagramUrl || "", color: "hover:text-pink-400" },
-    { icon: FaTelegramPlane, href: companyInfo?.telegramUrl || "", color: "hover:text-blue-400" },
-    { icon: FaLinkedin, href: companyInfo?.linkedinUrl || "", color: "hover:text-blue-500" },
-    { icon: FaWhatsapp, href: companyInfo?.whatsappUrl || "", color: "hover:text-green-400" },
-    { icon: FaFacebook, href: companyInfo?.facebookUrl || "", color: "hover:text-sky-400" },
+    { icon: FaInstagram, href: companyInfo?.instagramUrl || "", color: "hover:text-gray-700" },
+    { icon: FaTelegramPlane, href: companyInfo?.telegramUrl || "", color: "hover:text-gray-700" },
+    { icon: FaLinkedin, href: companyInfo?.linkedinUrl || "", color: "hover:text-gray-700" },
+    { icon: FaWhatsapp, href: companyInfo?.whatsappUrl || "", color: "hover:text-gray-700" },
+    { icon: FaFacebook, href: companyInfo?.facebookUrl || "", color: "hover:text-gray-700" },
   ];
 
   const quickLinks = [
@@ -52,7 +52,6 @@ const Footer = () => {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Work", href: "#work" },
-    { name: "Blog", href: "/blog" },
     { name: "Careers", href: "/careers" },
   ];
 
@@ -71,14 +70,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse delay-1000"></div>
-      </div>
-
+    <footer className="relative bg-gray-100 text-gray-900 overflow-hidden">
       <div className="relative container mx-auto px-6 py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -91,13 +83,13 @@ const Footer = () => {
             className="space-y-6"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center font-bold text-white text-xl">
+              <div className="w-10 h-10 bg-[#2b3991] rounded-lg flex items-center justify-center font-bold text-white text-xl">
                 G
               </div>
-              <h1 className="text-2xl font-bold text-white">GUMISOFTS</h1>
+              <h1 className="text-2xl font-bold text-[#2b3991]">GUMISOFTS</h1>
             </div>
 
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-600 leading-relaxed">
               Building innovative software solutions that transform businesses and create exceptional digital experiences.
             </p>
 
@@ -112,7 +104,7 @@ const Footer = () => {
                   <Link
                     href={social.href}
                     target="_blank"
-                    className={`w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center text-white transition-all duration-300 ${social.color}`}
+                    className={`w-10 h-10 bg-gray-200 hover:bg-[#2b3991] hover:text-white rounded-lg flex items-center justify-center text-gray-700 transition-all duration-300 ${social.color}`}
                   >
                     <social.icon className="w-5 h-5" />
                   </Link>
@@ -128,13 +120,13 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold text-white mb-6">Quick Links</h3>
+            <h3 className="text-xl font-bold text-[#2b3991] mb-6">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                    className="text-gray-600 hover:text-[#2b3991] transition-colors duration-300 flex items-center gap-2 group"
                     onClick={link.href.startsWith('#') ? (e) => handleScroll(e, link.href) : undefined}
                   >
                     <FiArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
@@ -152,22 +144,22 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold text-white mb-6">Contact Info</h3>
+            <h3 className="text-xl font-bold text-[#2b3991] mb-6">Contact Info</h3>
             <ul className="space-y-4">
               {contactInfo.map((info, index) => (
                 <li key={index} className="flex items-center gap-3 group">
-                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-8 h-8 bg-[#2b3991] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <info.icon className="w-4 h-4 text-white" />
                   </div>
                   {info.href && info.href !== '#' ? (
                     <Link
                       href={info.href}
-                      className="text-gray-300 hover:text-white transition-colors duration-300"
+                      className="text-gray-600 hover:text-[#2b3991] transition-colors duration-300"
                     >
                       {info.text}
                     </Link>
                   ) : (
-                    <span className="text-gray-300">{info.text}</span>
+                    <span className="text-gray-600">{info.text}</span>
                   )}
                 </li>
               ))}
@@ -181,8 +173,8 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold text-white mb-6">Stay Updated</h3>
-            <p className="text-gray-300 mb-6">
+            <h3 className="text-xl font-bold text-[#2b3991] mb-6">Stay Updated</h3>
+            <p className="text-gray-600 mb-6">
               Subscribe to our newsletter for the latest updates and insights.
             </p>
 
@@ -191,7 +183,7 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2b3991] focus:border-transparent transition-all duration-300"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -200,7 +192,7 @@ const Footer = () => {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full cursor-pointer bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full cursor-pointer bg-[#2b3991] hover:bg-[#1f2a6b] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2"
                 onClick={handleSubscribeToNewsletter}
               >
                 {isSubscribingToNewsletter ? "Subscribing..." : "Subscribe"}
@@ -216,21 +208,21 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="border-t border-white/10 pt-8"
+          className="border-t border-gray-300 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-gray-300 text-sm">
+            <div className="text-gray-600 text-sm">
               © {new Date().getFullYear()} GUMISOFTS. All rights reserved.
             </div>
 
             <div className="flex gap-6 text-sm">
-              <Link href="/privacy" className="text-gray-300 hover:text-white transition-colors duration-300">
+              <Link href="/privacy" className="text-gray-600 hover:text-[#2b3991] transition-colors duration-300">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-gray-300 hover:text-white transition-colors duration-300">
+              <Link href="/terms" className="text-gray-600 hover:text-[#2b3991] transition-colors duration-300">
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="text-gray-300 hover:text-white transition-colors duration-300">
+              <Link href="/cookies" className="text-gray-600 hover:text-[#2b3991] transition-colors duration-300">
                 Cookie Policy
               </Link>
             </div>

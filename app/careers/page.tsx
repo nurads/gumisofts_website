@@ -81,24 +81,16 @@ const Careers = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-1000"></div>
-          <div className="absolute top-3/4 right-1/3 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-2000"></div>
-        </div>
-
+      <section className="relative py-32 overflow-hidden bg-gray-50">
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="inline-block bg-blue-600/30 text-blue-200 px-6 py-3 rounded-full text-sm font-medium mb-8 border border-blue-400/30"
+              className="inline-block bg-gray-100 text-gray-900 px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-sm"
             >
               🚀 Join Our Team
             </motion.div>
@@ -107,10 +99,10 @@ const Careers = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-5xl md:text-7xl font-bold mb-6 text-white"
+              className="text-5xl md:text-7xl font-bold mb-6 text-[#2b3991]"
             >
               Shape the{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
+              <span className="text-gray-700">
                 Future
               </span>
             </motion.h1>
@@ -119,7 +111,7 @@ const Careers = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xl md:text-2xl mb-12 text-gray-200 leading-relaxed"
+              className="text-xl md:text-2xl mb-12 text-gray-600 leading-relaxed"
             >
               Join Gumisofts and be part of an innovative team that&apos;s transforming the digital landscape with cutting-edge solutions.
             </motion.p>
@@ -131,25 +123,25 @@ const Careers = () => {
               className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-12"
             >
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-[#2b3991] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <span className="text-2xl font-bold text-white">G</span>
                 </div>
-                <div className="text-lg text-white font-semibold">Get Inspired</div>
-                <div className="text-sm text-gray-300">Innovation drives us</div>
+                <div className="text-lg text-[#2b3991] font-semibold">Get Inspired</div>
+                <div className="text-sm text-gray-600">Innovation drives us</div>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-[#2b3991] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <span className="text-2xl font-bold text-white">G</span>
                 </div>
-                <div className="text-lg text-white font-semibold">Go Beyond</div>
-                <div className="text-sm text-gray-300">Exceed expectations</div>
+                <div className="text-lg text-[#2b3991] font-semibold">Go Beyond</div>
+                <div className="text-sm text-gray-600">Exceed expectations</div>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-[#2b3991] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <span className="text-2xl font-bold text-white">G</span>
                 </div>
-                <div className="text-lg text-white font-semibold">Grow Together</div>
-                <div className="text-sm text-gray-300">Success is shared</div>
+                <div className="text-lg text-[#2b3991] font-semibold">Grow Together</div>
+                <div className="text-sm text-gray-600">Success is shared</div>
               </div>
             </motion.div>
           </div>
@@ -157,9 +149,9 @@ const Careers = () => {
       </section>
 
       {/* Company Stats */}
-      <section className="relative py-16">
+      <section className="relative py-16 bg-white">
         <div className="container mx-auto px-6">
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20 shadow-2xl">
+          <div className="bg-gray-50 rounded-3xl p-12 border border-gray-200 shadow-xl">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
               {companyStats.map((stat, index) => (
                 <motion.div
@@ -170,11 +162,11 @@ const Careers = () => {
                   viewport={{ once: true }}
                   className="text-center group"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <div className="w-16 h-16 bg-[#2b3991] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <stat.icon className="w-8 h-8 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-gray-300">{stat.label}</div>
+                  <div className="text-3xl font-bold text-[#2b3991] mb-2">{stat.value}</div>
+                  <div className="text-gray-600">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -183,19 +175,19 @@ const Careers = () => {
       </section>
 
       {/* Job Search and Filter */}
-      <section className="relative py-8">
+      <section className="relative py-8 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/30 shadow-xl">
+            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-xl">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1 relative">
-                  <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 w-5 h-5" />
+                  <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
                     type="text"
                     placeholder="Search jobs by title, skills, or keywords..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
+                    className="w-full pl-12 pr-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2b3991] focus:border-transparent transition-all duration-300"
                   />
                 </div>
                 {/* <select
@@ -215,7 +207,7 @@ const Careers = () => {
       </section>
 
       {/* Open Positions */}
-      <section className="relative py-16">
+      <section className="relative py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -225,13 +217,13 @@ const Careers = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#2b3991] mb-6">
                 Open{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
+                <span className="text-gray-700">
                   Positions
                 </span>
               </h2>
-              <p className="text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 Discover exciting opportunities to grow your career with us. We&apos;re always looking for passionate individuals to join our team.
               </p>
             </motion.div>
@@ -239,11 +231,11 @@ const Careers = () => {
             {loading ? (
               <div className="grid md:grid-cols-2 gap-6">
                 {[...Array(4)].map((_, index) => (
-                  <div key={index} className="bg-white/10 backdrop-blur-lg rounded-3xl p-6 animate-pulse border border-white/30">
-                    <div className="h-4 bg-gray-500 rounded mb-4"></div>
-                    <div className="h-3 bg-gray-500 rounded mb-2"></div>
-                    <div className="h-3 bg-gray-500 rounded mb-4"></div>
-                    <div className="h-10 bg-gray-500 rounded"></div>
+                  <div key={index} className="bg-gray-50 rounded-3xl p-6 animate-pulse border border-gray-200">
+                    <div className="h-4 bg-gray-300 rounded mb-4"></div>
+                    <div className="h-3 bg-gray-300 rounded mb-2"></div>
+                    <div className="h-3 bg-gray-300 rounded mb-4"></div>
+                    <div className="h-10 bg-gray-300 rounded"></div>
                   </div>
                 ))}
               </div>
@@ -263,9 +255,9 @@ const Careers = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center py-12"
               >
-                <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20">
-                  <h3 className="text-2xl font-bold text-white mb-4">No positions found</h3>
-                  <p className="text-gray-200 mb-6">
+                <div className="bg-gray-50 rounded-3xl p-12 border border-gray-200">
+                  <h3 className="text-2xl font-bold text-[#2b3991] mb-4">No positions found</h3>
+                  <p className="text-gray-600 mb-6">
                     {searchTerm || filterDepartment
                       ? "Try adjusting your search criteria."
                       : "We don&apos;t have any open positions at the moment, but we&apos;re always interested in hearing from talented individuals."
@@ -276,7 +268,7 @@ const Careers = () => {
                       setSearchTerm('');
                       setFilterDepartment('');
                     }}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                    className="bg-[#2b3991] hover:bg-[#1f2a6b] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
                   >
                     Clear Filters
                   </button>
@@ -288,23 +280,19 @@ const Careers = () => {
       </section>
 
       {/* Why Join Us Section */}
-      <section className="relative py-24">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse transform -translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-
+      <section className="relative py-24 bg-gray-50">
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20 shadow-2xl">
+            <div className="bg-white rounded-3xl p-12 border border-gray-200 shadow-xl">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-bold mb-6 text-white"
+                className="text-4xl md:text-5xl font-bold mb-6 text-[#2b3991]"
               >
                 Why Join{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
+                <span className="text-gray-700">
                   Gumisofts?
                 </span>
               </motion.h2>
@@ -314,7 +302,7 @@ const Careers = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-xl text-gray-200 mb-12 leading-relaxed"
+                className="text-xl text-gray-600 mb-12 leading-relaxed"
               >
                 Experience a workplace where innovation thrives, careers flourish, and every team member makes a meaningful impact.
               </motion.p>
@@ -333,8 +321,8 @@ const Careers = () => {
                     viewport={{ once: true }}
                     className="text-center"
                   >
-                    <h4 className="text-lg font-semibold text-white mb-3">{benefit.title}</h4>
-                    <p className="text-gray-300">{benefit.description}</p>
+                    <h4 className="text-lg font-semibold text-[#2b3991] mb-3">{benefit.title}</h4>
+                    <p className="text-gray-600">{benefit.description}</p>
                   </motion.div>
                 ))}
               </div>

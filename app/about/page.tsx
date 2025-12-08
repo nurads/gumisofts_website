@@ -11,19 +11,16 @@ const About = () => {
       title: "Innovation",
       icon: FiTarget,
       description: "We embrace creativity and cutting-edge technology to push boundaries and deliver forward-thinking solutions.",
-      color: "from-blue-500 to-purple-500"
     },
     {
       title: "Quality",
       icon: FiAward,
       description: "We strive for excellence in every project, ensuring our software and services meet the highest standards.",
-      color: "from-purple-500 to-pink-500"
     },
     {
       title: "Collaboration",
       icon: FiUsers,
       description: "We believe in partnering closely with our clients and team to turn visions into reality through teamwork and trust.",
-      color: "from-pink-500 to-blue-500"
     },
   ];
 
@@ -40,24 +37,16 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-1000"></div>
-          <div className="absolute top-3/4 right-1/3 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-2000"></div>
-        </div>
-
+      <section className="relative py-32 overflow-hidden bg-gray-50">
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="inline-block bg-blue-600/30 text-blue-200 px-6 py-3 rounded-full text-sm font-medium mb-8 border border-blue-400/30"
+              className="inline-block bg-gray-100 text-gray-900 px-6 py-3 rounded-full text-sm font-medium mb-8 border border-gray-200 shadow-sm"
             >
               🚀 Our Story
             </motion.div>
@@ -66,10 +55,10 @@ const About = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-5xl md:text-7xl font-bold mb-6 text-white"
+              className="text-5xl md:text-7xl font-bold mb-6 text-[#2b3991]"
             >
               About{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
+              <span className="text-gray-700">
                 Gumisofts
               </span>
             </motion.h1>
@@ -78,7 +67,7 @@ const About = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xl md:text-2xl mb-12 text-gray-200 leading-relaxed"
+              className="text-xl md:text-2xl mb-12 text-gray-600 leading-relaxed"
             >
               Your partner in innovation, specializing in custom software, mobile app development, website creation, and next-level tech solutions for a connected world.
             </motion.p>
@@ -92,11 +81,11 @@ const About = () => {
             >
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-[#2b3991] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <stat.icon className="w-8 h-8 text-white" />
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-gray-300 text-sm">{stat.label}</div>
+                  <div className="text-3xl md:text-4xl font-bold text-[#2b3991] mb-2">{stat.value}</div>
+                  <div className="text-gray-600 text-sm">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
@@ -105,7 +94,7 @@ const About = () => {
       </section>
 
       {/* Who We Are Section */}
-      <section className="relative py-24">
+      <section className="relative py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -113,22 +102,22 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20 shadow-2xl"
+              className="bg-gray-50 rounded-3xl p-12 border border-gray-200 shadow-lg"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#2b3991] mb-8 text-center">
                 Who{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
+                <span className="text-gray-700">
                   We Are
                 </span>
               </h2>
 
-              <p className="text-xl text-gray-200 leading-relaxed text-center mb-8">
-                At <span className="text-blue-300 font-semibold">Gumisofts</span>, we&apos;re a dedicated team of creators, developers, and tech enthusiasts united by a passion for building exceptional digital experiences that matter.
+              <p className="text-xl text-gray-600 leading-relaxed text-center mb-8">
+                At <span className="text-[#2b3991] font-semibold">Gumisofts</span>, we&apos;re a dedicated team of creators, developers, and tech enthusiasts united by a passion for building exceptional digital experiences that matter.
               </p>
 
-              <p className="text-lg text-gray-200 leading-relaxed text-center">
+              <p className="text-lg text-gray-600 leading-relaxed text-center">
                 We specialize in crafting custom software, intuitive mobile apps, dynamic websites, robust APIs, and cutting-edge tech solutions, all tailored to our clients&apos; unique needs. From startups to established businesses, we collaborate with visionaries to transform their ideas into powerful, user-friendly realities. Our commitment to{" "}
-                <span className="text-white font-medium">quality, innovation, and teamwork</span>{" "}
+                <span className="text-[#2b3991] font-medium">quality, innovation, and teamwork</span>{" "}
                 drives us, and we take pride in shaping the future of technology with every project we undertake.
               </p>
             </motion.div>
@@ -137,11 +126,7 @@ const About = () => {
       </section>
 
       {/* Our Values Section */}
-      <section className="relative py-24">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse transform -translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-
+      <section className="relative py-24 bg-gray-50">
         <div className="relative container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -150,13 +135,13 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#2b3991] mb-6">
               Our{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300">
+              <span className="text-gray-700">
                 Values
               </span>
             </h2>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               The principles that guide everything we do and define who we are as a company.
             </p>
           </motion.div>
@@ -170,28 +155,25 @@ const About = () => {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative bg-white/15 backdrop-blur-lg rounded-3xl p-8 border border-white/30 hover:border-purple-400/50 transition-all duration-500"
+                className="group relative bg-white rounded-3xl p-8 border border-gray-200 hover:border-[#2b3991] hover:shadow-xl transition-all duration-500"
               >
                 {/* Icon */}
                 <div className="relative mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${value.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <div className="w-16 h-16 bg-[#2b3991] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <value.icon className="w-8 h-8 text-white" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <FiHeart className="w-3 h-3 text-yellow-900" />
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#2b3991] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <FiHeart className="w-3 h-3 text-white" />
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
+                <h3 className="text-2xl font-bold text-[#2b3991] mb-4 group-hover:text-[#1f2a6b] transition-all duration-300">
                   {value.title}
                 </h3>
 
-                <p className="text-gray-200 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed">
                   {value.description}
                 </p>
-
-                {/* Hover Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${value.color} opacity-0 group-hover:opacity-20 rounded-3xl transition-opacity duration-500 -z-10`}></div>
               </motion.div>
             ))}
           </div>
@@ -199,7 +181,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="relative py-24">
+      <section className="relative py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12">
@@ -209,14 +191,14 @@ const About = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-xl"
+                className="bg-gray-50 rounded-3xl p-8 border border-gray-200 shadow-lg"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                <div className="w-16 h-16 bg-[#2b3991] rounded-2xl flex items-center justify-center mb-6 shadow-lg">
                   <FiTarget className="w-8 h-8 text-white" />
                 </div>
 
-                <h3 className="text-3xl font-bold text-white mb-6">Our Mission</h3>
-                <p className="text-lg text-gray-200 leading-relaxed">
+                <h3 className="text-3xl font-bold text-[#2b3991] mb-6">Our Mission</h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
                   To develop software that solves real-world problems. We believe technology should be functional, intuitive, and impactful—ensuring our solutions enhance efficiency and drive success for businesses of all sizes.
                 </p>
               </motion.div>
@@ -227,14 +209,14 @@ const About = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-xl"
+                className="bg-gray-50 rounded-3xl p-8 border border-gray-200 shadow-lg"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                <div className="w-16 h-16 bg-[#2b3991] rounded-2xl flex items-center justify-center mb-6 shadow-lg">
                   <FiGlobe className="w-8 h-8 text-white" />
                 </div>
 
-                <h3 className="text-3xl font-bold text-white mb-6">Our Vision</h3>
-                <p className="text-lg text-gray-200 leading-relaxed">
+                <h3 className="text-3xl font-bold text-[#2b3991] mb-6">Our Vision</h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
                   To be the leading force in digital transformation, empowering businesses worldwide with innovative technology solutions that shape the future and create lasting positive impact in the digital landscape.
                 </p>
               </motion.div>
@@ -244,23 +226,19 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse transform -translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-
+      <section className="relative py-24 bg-gray-50">
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20 shadow-2xl">
+            <div className="bg-white rounded-3xl p-12 border border-gray-200 shadow-xl">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-bold mb-6 text-white"
+                className="text-4xl md:text-5xl font-bold mb-6 text-[#2b3991]"
               >
                 Ready to{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
+                <span className="text-gray-700">
                   Collaborate?
                 </span>
               </motion.h2>
@@ -270,7 +248,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-xl text-gray-200 mb-8 leading-relaxed"
+                className="text-xl text-gray-600 mb-8 leading-relaxed"
               >
                 Let&apos;s work together to turn your vision into reality and create something amazing.
               </motion.p>
@@ -284,12 +262,12 @@ const About = () => {
               >
                 <Link
                   href="/#contact"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
+                  className="bg-[#2b3991] hover:bg-[#1f2a6b] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   Start Your Project
                 </Link>
 
-                <Link href="/services" className="border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
+                <Link href="/services" className="border-2 border-gray-300 hover:border-[#2b3991] text-[#2b3991] hover:bg-gray-50 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
                   Learn More
                 </Link>
               </motion.div>
