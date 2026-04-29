@@ -16,7 +16,7 @@ export interface LoaderProps {
     /**
      * Color theme of the loader
      */
-    theme?: 'primary' | 'secondary' | 'white' | 'gradient';
+    theme?: 'primary' | 'secondary' | 'white' | 'brand';
 
     /**
      * Optional loading text
@@ -42,7 +42,7 @@ export interface LoaderProps {
 const Loader: React.FC<LoaderProps> = ({
     variant = 'spinner',
     size = 'md',
-    theme = 'gradient',
+    theme = 'brand',
     text,
     overlay = false,
     className = '',
@@ -66,18 +66,18 @@ const Loader: React.FC<LoaderProps> = ({
 
     // Color themes
     const colorThemes = {
-        primary: 'text-blue-500',
-        secondary: 'text-purple-500',
+        primary: 'text-[#2b3991]',
+        secondary: 'text-gray-600',
         white: 'text-white',
-        gradient: 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400'
+        brand: 'text-[#2b3991]'
     };
 
     // Spinner Loader
     const SpinnerLoader = () => (
         <motion.div
-            className={`border-2 border-gray-300 border-t-transparent rounded-full ${sizeClasses[size]} ${theme === 'gradient'
-                    ? 'border-gray-300/30 border-t-blue-500'
-                    : `border-gray-300/30 border-t-current ${colorThemes[theme]}`
+            className={`border-2 border-gray-200 border-t-transparent rounded-full ${sizeClasses[size]} ${theme === 'brand'
+                ? 'border-gray-200 border-t-[#2b3991]'
+                : `border-gray-200 border-t-current ${colorThemes[theme]}`
                 }`}
             animate={{ rotate: 360 }}
             transition={{
@@ -107,9 +107,9 @@ const Loader: React.FC<LoaderProps> = ({
                 {[0, 1, 2].map((index) => (
                     <motion.div
                         key={index}
-                        className={`rounded-full ${dotSize[size]} ${theme === 'gradient'
-                                ? 'bg-gradient-to-r from-blue-500 to-purple-500'
-                                : `bg-current ${colorThemes[theme]}`
+                        className={`rounded-full ${dotSize[size]} ${theme === 'brand'
+                            ? 'bg-[#2b3991]'
+                            : `bg-current ${colorThemes[theme]}`
                             }`}
                         variants={dotVariants}
                         initial="initial"
@@ -152,9 +152,9 @@ const Loader: React.FC<LoaderProps> = ({
                 {[0, 1, 2, 3, 4].map((index) => (
                     <motion.div
                         key={index}
-                        className={`rounded-sm ${barWidth[size]} ${barHeight[size]} ${theme === 'gradient'
-                                ? 'bg-gradient-to-t from-blue-500 to-purple-500'
-                                : `bg-current ${colorThemes[theme]}`
+                        className={`rounded-sm ${barWidth[size]} ${barHeight[size]} ${theme === 'brand'
+                            ? 'bg-[#2b3991]'
+                            : `bg-current ${colorThemes[theme]}`
                             }`}
                         variants={barVariants}
                         initial="initial"
@@ -173,9 +173,9 @@ const Loader: React.FC<LoaderProps> = ({
     // Pulse Loader
     const PulseLoader = () => (
         <motion.div
-            className={`rounded-full ${sizeClasses[size]} ${theme === 'gradient'
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500'
-                    : `bg-current ${colorThemes[theme]}`
+            className={`rounded-full ${sizeClasses[size]} ${theme === 'brand'
+                ? 'bg-[#2b3991]'
+                : `bg-current ${colorThemes[theme]}`
                 }`}
             animate={{
                 scale: [1, 1.2, 1],
@@ -203,9 +203,9 @@ const Loader: React.FC<LoaderProps> = ({
                 {[0, 1].map((index) => (
                     <motion.div
                         key={index}
-                        className={`absolute inset-0 rounded-full border-2 ${theme === 'gradient'
-                                ? 'border-blue-500'
-                                : `border-current ${colorThemes[theme]}`
+                        className={`absolute inset-0 rounded-full border-2 ${theme === 'brand'
+                            ? 'border-[#2b3991]'
+                            : `border-current ${colorThemes[theme]}`
                             }`}
                         animate={{
                             scale: [0, 1],
@@ -263,9 +263,9 @@ const Loader: React.FC<LoaderProps> = ({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+                className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50"
             >
-                <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl">
+                <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-xl">
                     {loaderContent}
                 </div>
             </motion.div>

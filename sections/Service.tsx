@@ -1,9 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
 import { services } from "../constants";
-import { FiArrowRight, FiStar } from "react-icons/fi";
+import { FiArrowRight, FiStar, FiCloud } from "react-icons/fi";
+import * as Icons from "react-icons/fi";
+import type { IconType } from "react-icons";
 import Link from "next/link";
 import { formatServiceUrl } from "../lib/utils";
+
+const getIconComponent = (iconKey: string): IconType => {
+  return (Icons[iconKey as keyof typeof Icons] as IconType) || FiCloud;
+};
 
 const Service = () => {
   return (
@@ -43,7 +49,9 @@ const Service = () => {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {services.slice(0, 6).map((service, index) => (
+          {services.slice(0, 6).map((service, index) => {
+            const Icon = getIconComponent(service.icon);
+            return (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 30 }}
@@ -56,13 +64,7 @@ const Service = () => {
               {/* Service Icon */}
               <div className="relative mb-6">
                 <div className="w-16 h-16 bg-[#2b3991] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <img
-                    width={32}
-                    height={32}
-                    src={service.imgSrc}
-                    alt={service.title}
-                    className="filter brightness-0 invert"
-                  />
+                  <Icon className="w-8 h-8 text-white" />
                 </div>
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#2b3991] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <FiStar className="w-3 h-3 text-white" />
@@ -90,7 +92,8 @@ const Service = () => {
               {/* Hover Effect */}
               <div className="absolute inset-0 bg-gray-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Floating Services Animation */}
@@ -104,21 +107,18 @@ const Service = () => {
             }}
             className="flex gap-8 absolute top-1/2 transform -translate-y-1/2"
           >
-            {[...services, ...services].map((service, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-4 bg-white border border-gray-200 rounded-full px-6 py-3 whitespace-nowrap shadow-sm"
-              >
-                <img
-                  width={20}
-                  height={20}
-                  src={service.imgSrc}
-                  alt={service.title}
-                  className="filter brightness-0"
-                />
-                <span className="text-[#2b3991] font-medium">{service.title}</span>
-              </div>
-            ))}
+            {[...services, ...services].map((service, index) => {
+              const Icon = getIconComponent(service.icon);
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 bg-white border border-gray-200 rounded-full px-6 py-3 whitespace-nowrap shadow-sm"
+                >
+                  <Icon className="w-5 h-5 text-[#2b3991]" />
+                  <span className="text-[#2b3991] font-medium">{service.title}</span>
+                </div>
+              );
+            })}
           </motion.div>
         </div>
 

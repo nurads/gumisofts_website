@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import SiteShell from "@/components/SiteShell";
 import { ReactQueryProvider } from "./providers";
 
 const geistSans = Geist({
@@ -17,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gumisofts — Beyond software we build sucess",
-  description: "Software development company specializing in web, mobile and ERP applications.",
+  title: "Gumisofts — Software products and custom development",
+  description:
+    "Gumisofts builds Bita Business, an inventory and sales management platform, and delivers custom web, mobile, and ERP software for ambitious teams.",
   icons: {
     icon: "/assets/gumicrop.ico",
   },
@@ -29,23 +29,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* Navbar appears on every page */}
-        <div className="flex flex-col min-h-screen">
-          {/* Navbar always at the top */}
-          <ReactQueryProvider>
-            <Navbar />
-            {/* Main content area fills the available space */}
-            <main className="flex-1">{children}</main>
-            {/* Footer always at the bottom */}
-            <Footer />
-          </ReactQueryProvider>
-        </div>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ReactQueryProvider>
+          <SiteShell>{children}</SiteShell>
+        </ReactQueryProvider>
       </body>
     </html>
   );

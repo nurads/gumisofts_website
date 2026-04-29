@@ -109,7 +109,7 @@ const ServicesPage = () => {
             </section>
 
             {/* Service Categories Filter */}
-            <section className="relative py-8 bg-white border-y border-gray-200 sticky top-20 z-10 shadow-sm">
+            <section className="relative py-8 bg-white border-y border-gray-200 sticky top-16 z-10 shadow-sm">
                 <div className="container mx-auto px-6">
                     <div className="flex justify-center">
                         <div className="flex flex-wrap gap-3">

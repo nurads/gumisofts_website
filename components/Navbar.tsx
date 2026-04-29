@@ -81,7 +81,7 @@ const Navbar = () => {
         : "bg-white/95 backdrop-blur-sm"
         }`}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-6 py-2.5">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.div
@@ -89,9 +89,9 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Link href="/" className="flex items-center gap-3 group">
-              <Image src="/assets/logo.png" alt="Gumisofts" width={64} height={64} />
-              <span className="text-2xl font-bold text-[#2b3991] group-hover:text-[#1f2a6b] transition-all duration-300">
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <Image src="/assets/logo.png" alt="Gumisofts" width={44} height={44} />
+              <span className="text-xl font-bold text-[#2b3991] group-hover:text-[#1f2a6b] transition-all duration-300">
                 Gumisofts
               </span>
             </Link>

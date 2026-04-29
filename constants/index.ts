@@ -6,13 +6,13 @@ export const navLinks = [
   },
   {
     id: 2,
-    name: "Services",
-    href: "/services",
+    name: "Products",
+    href: "/products",
   },
   {
     id: 3,
-    name: "Products",
-    href: "/products",
+    name: "Services",
+    href: "/services",
   },
   {
     id: 4,
@@ -36,63 +36,63 @@ export const services = [
     title: "Mobile App Development",
     description:
       "We build high-performance iOS and Android apps that are scalable, user-friendly, and tailored to your business needs.",
-    imgSrc: "assets/service/mobile.png",
+    icon: "FiSmartphone",
   },
   {
     id: 2,
     title: "Web Development",
     description:
       "Our web development services ensure responsive, high-performance websites that provide an engaging user experience.",
-    imgSrc: "assets/service/web.png",
+    icon: "FiGlobe",
   },
   {
     id: 3,
     title: "Web Application Development",
     description:
-      " Our dynamic and interactive web applications are built with modern frameworks and technologies.",
-    imgSrc: "assets/service/webapp.png",
+      "Our dynamic and interactive web applications are built with modern frameworks and technologies.",
+    icon: "FiLayout",
   },
   {
     id: 4,
     title: "API Development",
     description:
       "We develop robust and secure APIs (RESTful and GraphQL) for seamless integration into your systems.",
-    imgSrc: "assets/service/api.png",
+    icon: "FiServer",
   },
   {
     id: 5,
     title: "Desktop Applications",
     description:
       "We create feature-rich desktop applications for Windows, macOS, and Linux.",
-    imgSrc: "assets/service/desktop.png",
+    icon: "FiMonitor",
   },
   {
     id: 6,
     title: "Automations",
     description:
       "We streamline your business processes with workflow automation and custom scripts.",
-    imgSrc: "assets/service/automation.png",
+    icon: "FiZap",
   },
   {
     id: 7,
     title: "SEO Services",
     description:
       "We boost your online visibility with data-driven SEO strategies.",
-    imgSrc: "assets/service/seo.png",
+    icon: "FiTrendingUp",
   },
   {
     id: 8,
     title: "Command-line Applications",
     description:
       "We build efficient and powerful CLI tools for automation and productivity.",
-    imgSrc: "assets/service/command.png",
+    icon: "FiTerminal",
   },
   {
     id: 9,
     title: "DevOps & CI/CD",
     description:
       "We streamline development and deployment processes for faster delivery.",
-    imgSrc: "assets/service/cicd.png",
+    icon: "FiCloud",
   },
 ];
 

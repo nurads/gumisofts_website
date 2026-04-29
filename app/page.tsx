@@ -1,6 +1,6 @@
 "use client";
 import Hero from "@/sections/Hero";
-
+import Products from "@/sections/Products";
 import Service from "@/sections/Service";
 import Testimonial from "@/sections/Testimonial";
 import Work from "@/sections/Work";
@@ -11,11 +11,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
       <Hero />
+      <Products />
       <Service />
-      <Testimonial />
       <Work />
+      <Testimonial />
       <Contact />
       <ToastContainer position="top-right" autoClose={3000} />
     </div>

@@ -1,10 +1,18 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiArrowLeft, FiCheck, FiCloud, FiStar, FiZap, FiMail, FiPhone } from 'react-icons/fi';
+import {
+    FiArrowLeft,
+    FiCheck,
+    FiCloud,
+    FiStar,
+    FiZap,
+    FiMail,
+    FiPhone,
+} from 'react-icons/fi';
 import * as Icons from 'react-icons/fi';
 import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { getService } from '@/services/company';
@@ -15,7 +23,7 @@ const ServiceDetailPage = () => {
     const serviceId = params.id as string;
 
     const { data: service, isLoading: serviceLoading } = useQuery({
-        queryKey: ["service", serviceId],
+        queryKey: ['service', serviceId],
         queryFn: () => getService(serviceId),
     });
 
@@ -23,21 +31,19 @@ const ServiceDetailPage = () => {
         return Icons[iconKey as keyof typeof Icons] || FiCloud;
     };
 
-
-
     const scrollToContact = () => {
-        const section = document.getElementById("contact");
+        const section = document.getElementById('contact');
         if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
+            section.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
     if (serviceLoading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black flex items-center justify-center">
+            <div className="min-h-screen bg-white flex items-center justify-center">
                 <div className="text-center">
-                    <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-white text-lg">Loading service details...</p>
+                    <div className="w-16 h-16 border-4 border-gray-200 border-t-[#2b3991] rounded-full animate-spin mx-auto mb-4"></div>
+                    <p className="text-gray-700 text-lg">Loading service details...</p>
                 </div>
             </div>
         );
@@ -45,13 +51,15 @@ const ServiceDetailPage = () => {
 
     if (!service) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black flex items-center justify-center">
+            <div className="min-h-screen bg-white flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-4xl font-bold text-white mb-4">Service Not Found</h1>
-                    <p className="text-gray-300 mb-8">The service you&apos;re looking for doesn&apos;t exist.</p>
+                    <h1 className="text-4xl font-bold text-[#2b3991] mb-4">Service Not Found</h1>
+                    <p className="text-gray-600 mb-8">
+                        The service you&apos;re looking for doesn&apos;t exist.
+                    </p>
                     <Link
                         href="/services"
-                        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+                        className="bg-[#2b3991] hover:bg-[#1f2a6b] text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300"
                     >
                         Back to Services
                     </Link>
@@ -63,7 +71,7 @@ const ServiceDetailPage = () => {
     const IconComponent = getIconComponent(service.icon);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
+        <div className="min-h-screen bg-white">
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -74,21 +82,12 @@ const ServiceDetailPage = () => {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                theme="dark"
             />
 
             {/* Hero Section */}
-            <section className="relative py-32 overflow-hidden">
-                {/* Background Effects */}
-                <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                <div className="absolute inset-0">
-                    <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-                    <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-1000"></div>
-                </div>
-
+            <section className="relative py-32 bg-gray-50 border-b border-gray-200">
                 <div className="relative container mx-auto px-6">
                     <div className="max-w-4xl mx-auto">
-                        {/* Back Button */}
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -97,75 +96,72 @@ const ServiceDetailPage = () => {
                         >
                             <Link
                                 href="/services"
-                                className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-300"
+                                className="inline-flex items-center gap-2 text-[#2b3991] hover:text-[#1f2a6b] transition-colors duration-300 font-medium"
                             >
                                 <FiArrowLeft className="w-5 h-5" />
-                                <span className="font-medium">Back to Services</span>
+                                Back to Services
                             </Link>
                         </motion.div>
 
                         <div className="flex flex-col items-center text-center">
-                            {/* Service Icon */}
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
+                                initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.6 }}
                                 className="relative mb-8"
                             >
-                                <div className="w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl flex items-center justify-center shadow-2xl mx-auto">
-                                    <IconComponent className="w-16 h-16 text-white" />
+                                <div className="w-28 h-28 bg-[#2b3991] rounded-3xl flex items-center justify-center shadow-md mx-auto">
+                                    <IconComponent className="w-14 h-14 text-white" />
                                 </div>
-                                <div className="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
-                                    <FiStar className="w-6 h-6 text-yellow-900" />
+                                <div className="absolute -top-3 -right-3 w-10 h-10 bg-[#2b3991] rounded-full flex items-center justify-center shadow-md">
+                                    <FiStar className="w-5 h-5 text-white" />
                                 </div>
                             </motion.div>
 
-                            {/* Service Info */}
                             <div className="max-w-3xl">
                                 <motion.div
-                                    initial={{ opacity: 0, y: 30 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.2 }}
-                                    className="inline-block bg-blue-600/30 text-blue-200 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-blue-400/30"
+                                    className="inline-block bg-white text-[#2b3991] border border-gray-200 px-4 py-2 rounded-full text-sm font-medium mb-6"
                                 >
                                     {service.category}
                                 </motion.div>
 
                                 <motion.h1
-                                    initial={{ opacity: 0, y: 30 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.3 }}
-                                    className="text-4xl md:text-6xl font-bold mb-6 text-white"
+                                    className="text-4xl md:text-6xl font-bold mb-6 text-[#2b3991]"
                                 >
                                     {service.title}
                                 </motion.h1>
 
                                 <motion.p
-                                    initial={{ opacity: 0, y: 30 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.4 }}
-                                    className="text-xl text-gray-200 leading-relaxed mb-8"
+                                    className="text-xl text-gray-600 leading-relaxed mb-8"
                                 >
                                     {service.description}
                                 </motion.p>
 
-                                {/* CTA Buttons */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.6 }}
+                                    transition={{ duration: 0.6, delay: 0.5 }}
                                     className="flex flex-col sm:flex-row gap-4 justify-center"
                                 >
                                     <button
                                         onClick={scrollToContact}
-                                        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2"
+                                        className="bg-[#2b3991] hover:bg-[#1f2a6b] text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors duration-300 shadow-md flex items-center justify-center gap-2"
                                     >
                                         Get Started
                                         <FiZap className="w-5 h-5" />
                                     </button>
                                     <button
                                         onClick={scrollToContact}
-                                        className="border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2"
+                                        className="border-2 border-gray-300 hover:border-[#2b3991] text-[#2b3991] hover:bg-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2"
                                     >
                                         Contact Us
                                         <FiMail className="w-5 h-5" />
@@ -182,19 +178,16 @@ const ServiceDetailPage = () => {
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                             className="text-center mb-16"
                         >
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                                What You{" "}
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                                    Get
-                                </span>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#2b3991]">
+                                What You <span className="text-gray-700">Get</span>
                             </h2>
-                            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                                 Comprehensive features and benefits designed to deliver exceptional results
                             </p>
                         </motion.div>
@@ -207,14 +200,14 @@ const ServiceDetailPage = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: index * 0.1 }}
                                     viewport={{ once: true }}
-                                    className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:border-purple-400/50 transition-all duration-300"
+                                    className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-[#2b3991] hover:shadow-md transition-all duration-300"
                                 >
                                     <div className="flex items-start gap-4">
-                                        <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                            <FiCheck className="w-4 h-4 text-green-400" />
+                                        <div className="w-9 h-9 bg-[#2b3991] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                            <FiCheck className="w-4 h-4 text-white" />
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-semibold text-white mb-2">{feature}</h3>
+                                            <h3 className="text-lg font-semibold text-[#2b3991]">{feature}</h3>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -225,23 +218,20 @@ const ServiceDetailPage = () => {
             </section>
 
             {/* Request Quote Section */}
-            <section className="relative py-24 bg-white/5">
+            <section className="relative py-24 bg-gray-50 border-t border-gray-200">
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                             className="text-center mb-16"
                         >
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                                Get Your{" "}
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                                    Custom Quote
-                                </span>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#2b3991]">
+                                Get Your <span className="text-gray-700">Custom Quote</span>
                             </h2>
-                            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                                 Every project is unique. Contact us for a personalized quote tailored to your specific requirements and budget.
                             </p>
                         </motion.div>
@@ -251,18 +241,15 @@ const ServiceDetailPage = () => {
                                 {
                                     title: 'Project Scope',
                                     description: 'Tell us about your project requirements, timeline, and goals.',
-                                    icon: '📋'
                                 },
                                 {
                                     title: 'Custom Solution',
-                                    description: 'We&apos;ll design a tailored solution that fits your specific needs.',
-                                    icon: '⚡'
+                                    description: "We'll design a tailored solution that fits your specific needs.",
                                 },
                                 {
                                     title: 'Transparent Pricing',
                                     description: 'Receive a detailed quote with no hidden costs or surprises.',
-                                    icon: '💰'
-                                }
+                                },
                             ].map((step, index) => (
                                 <motion.div
                                     key={step.title}
@@ -270,15 +257,17 @@ const ServiceDetailPage = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: index * 0.1 }}
                                     viewport={{ once: true }}
-                                    className="relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-purple-400/30 transition-all duration-300 text-center"
+                                    className="relative bg-white rounded-3xl p-8 border border-gray-200 hover:border-[#2b3991] hover:shadow-md transition-all duration-300 text-center"
                                 >
-                                    <div className="text-4xl mb-6">{step.icon}</div>
-                                    <h3 className="text-2xl font-bold text-white mb-4">{step.title}</h3>
-                                    <p className="text-gray-300 leading-relaxed mb-6">{step.description}</p>
+                                    <div className="w-12 h-12 bg-[#2b3991] text-white font-bold rounded-full flex items-center justify-center mx-auto mb-6 text-lg">
+                                        {index + 1}
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-[#2b3991] mb-4">{step.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed mb-6">{step.description}</p>
 
                                     {index === 1 && (
                                         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                                            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                                            <div className="bg-[#2b3991] text-white px-4 py-1.5 rounded-full text-xs font-semibold">
                                                 Recommended
                                             </div>
                                         </div>
@@ -296,13 +285,13 @@ const ServiceDetailPage = () => {
                         >
                             <button
                                 onClick={scrollToContact}
-                                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-4 rounded-lg font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-3 mx-auto"
+                                className="bg-[#2b3991] hover:bg-[#1f2a6b] text-white px-12 py-4 rounded-lg font-bold text-xl transition-colors duration-300 shadow-md flex items-center justify-center gap-3 mx-auto"
                             >
                                 Request Your Quote
-                                <FiMail className="w-6 h-6" />
+                                <FiMail className="w-5 h-5" />
                             </button>
-                            <p className="text-gray-400 mt-4 text-sm">
-                                Free consultation • No obligation • Quick response
+                            <p className="text-gray-500 mt-4 text-sm">
+                                Free consultation · No obligation · Quick response
                             </p>
                         </motion.div>
                     </div>
@@ -310,20 +299,16 @@ const ServiceDetailPage = () => {
             </section>
 
             {/* CTA Section */}
-            <section className="relative py-24">
-                <div className="absolute inset-0">
-                    <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse transform -translate-x-1/2 -translate-y-1/2"></div>
-                </div>
-
+            <section className="relative py-24 bg-white">
                 <div className="relative container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center">
-                        <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20 shadow-2xl">
+                        <div className="bg-gray-50 rounded-3xl p-12 border border-gray-200 shadow-md">
                             <motion.h2
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8 }}
                                 viewport={{ once: true }}
-                                className="text-3xl md:text-5xl font-bold text-white mb-6"
+                                className="text-3xl md:text-5xl font-bold text-[#2b3991] mb-6"
                             >
                                 Ready to Get Started?
                             </motion.h2>
@@ -333,7 +318,7 @@ const ServiceDetailPage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.2 }}
                                 viewport={{ once: true }}
-                                className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
+                                className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
                             >
                                 Let&apos;s discuss your project and transform your ideas into reality with our {service.title.toLowerCase()} expertise.
                             </motion.p>
@@ -347,7 +332,7 @@ const ServiceDetailPage = () => {
                             >
                                 <button
                                     onClick={scrollToContact}
-                                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2"
+                                    className="bg-[#2b3991] hover:bg-[#1f2a6b] text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors duration-300 shadow-md flex items-center justify-center gap-2"
                                 >
                                     Start Your Project
                                     <FiZap className="w-5 h-5" />
@@ -355,7 +340,7 @@ const ServiceDetailPage = () => {
 
                                 <button
                                     onClick={scrollToContact}
-                                    className="border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2"
+                                    className="border-2 border-gray-300 hover:border-[#2b3991] text-[#2b3991] hover:bg-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2"
                                 >
                                     Contact Sales
                                     <FiPhone className="w-5 h-5" />
@@ -369,4 +354,4 @@ const ServiceDetailPage = () => {
     );
 };
 
-export default ServiceDetailPage; 
+export default ServiceDetailPage;
